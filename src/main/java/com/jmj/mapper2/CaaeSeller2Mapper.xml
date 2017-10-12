@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao2.CaaeSeller2Mapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity2.CaaeSeller2" >
+    <id column="SELLER_ID" property="sellerId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="SELLER_NAME" property="sellerName" jdbcType="VARCHAR" />
+    <result column="SELLER_TYPE" property="sellerType" jdbcType="VARCHAR" />
+    <result column="SELLER_CODE" property="sellerCode" jdbcType="VARCHAR" />
+    <result column="HQ_CODE" property="hqCode" jdbcType="VARCHAR" />
+    <result column="HQ_NAME" property="hqName" jdbcType="VARCHAR" />
+    <result column="MONITOR_NAME" property="monitorName" jdbcType="VARCHAR" />
+    <result column="MONITOR_AREA" property="monitorArea" jdbcType="VARCHAR" />
+    <result column="INDUSTY_CODE" property="industyCode" jdbcType="VARCHAR" />
+    <result column="ZONE" property="zone" jdbcType="VARCHAR" />
+    <result column="MANAGER_SCALE" property="managerScale" jdbcType="VARCHAR" />
+    <result column="ECONOMY_TYPE" property="economyType" jdbcType="VARCHAR" />
+    <result column="SELLER_HOLD_PERCENT" property="sellerHoldPercent" jdbcType="DECIMAL" />
+    <result column="SELL_PERCENT" property="sellPercent" jdbcType="DECIMAL" />
+    <result column="AUTHORIZE_UNIT" property="authorizeUnit" jdbcType="VARCHAR" />
+    <result column="AUTHORIZE_FILE_TYPE" property="authorizeFileType" jdbcType="VARCHAR" />
+    <result column="AUTHORIZE_FILE_NAME" property="authorizeFileName" jdbcType="VARCHAR" />
+    <result column="AUTHORZE_DATE" property="authorzeDate" jdbcType="TIMESTAMP" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="SELLER_PHONE" property="sellerPhone" jdbcType="VARCHAR" />
+    <result column="SELLER_ADDRESS" property="sellerAddress" jdbcType="VARCHAR" />
+    <result column="SELLER_EMAIL" property="sellerEmail" jdbcType="VARCHAR" />
+    <result column="SELLER_ROLE" property="sellerRole" jdbcType="VARCHAR" />
+    <result column="DECISION_FILE_TYPE" property="decisionFileType" jdbcType="VARCHAR" />
+    <result column="ECONOMY_NATURE" property="economyNature" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SELLER_ID, CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+    TRAD_INSTITUTION_NAME, PROJECT_TYPE, SELLER_NAME, SELLER_TYPE, SELLER_CODE, HQ_CODE, 
+    HQ_NAME, MONITOR_NAME, MONITOR_AREA, INDUSTY_CODE, ZONE, MANAGER_SCALE, ECONOMY_TYPE, 
+    SELLER_HOLD_PERCENT, SELL_PERCENT, AUTHORIZE_UNIT, AUTHORIZE_FILE_TYPE, AUTHORIZE_FILE_NAME, 
+    AUTHORZE_DATE, PRO_TRANS_ID, SELLER_PHONE, SELLER_ADDRESS, SELLER_EMAIL, SELLER_ROLE, 
+    DECISION_FILE_TYPE, ECONOMY_NATURE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity2.CaaeSeller2Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_SELLER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_SELLER
+    where SELLER_ID = #{sellerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRAPP.CAAE_SELLER
+    where SELLER_ID = #{sellerId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity2.CaaeSeller2Example" >
+    delete from PRAPP.CAAE_SELLER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity2.CaaeSeller2" >
+    insert into PRAPP.CAAE_SELLER (SELLER_ID, CREATE_TIME, LAST_UPDATE_TIME, 
+      PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+      TRAD_INSTITUTION_NAME, PROJECT_TYPE, SELLER_NAME, 
+      SELLER_TYPE, SELLER_CODE, HQ_CODE, 
+      HQ_NAME, MONITOR_NAME, MONITOR_AREA, 
+      INDUSTY_CODE, ZONE, MANAGER_SCALE, 
+      ECONOMY_TYPE, SELLER_HOLD_PERCENT, SELL_PERCENT, 
+      AUTHORIZE_UNIT, AUTHORIZE_FILE_TYPE, AUTHORIZE_FILE_NAME, 
+      AUTHORZE_DATE, PRO_TRANS_ID, SELLER_PHONE, 
+      SELLER_ADDRESS, SELLER_EMAIL, SELLER_ROLE, 
+      DECISION_FILE_TYPE, ECONOMY_NATURE)
+    values (#{sellerId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{platformId,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, 
+      #{tradInstitutionName,jdbcType=VARCHAR}, #{projectType,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, 
+      #{sellerType,jdbcType=VARCHAR}, #{sellerCode,jdbcType=VARCHAR}, #{hqCode,jdbcType=VARCHAR}, 
+      #{hqName,jdbcType=VARCHAR}, #{monitorName,jdbcType=VARCHAR}, #{monitorArea,jdbcType=VARCHAR}, 
+      #{industyCode,jdbcType=VARCHAR}, #{zone,jdbcType=VARCHAR}, #{managerScale,jdbcType=VARCHAR}, 
+      #{economyType,jdbcType=VARCHAR}, #{sellerHoldPercent,jdbcType=DECIMAL}, #{sellPercent,jdbcType=DECIMAL}, 
+      #{authorizeUnit,jdbcType=VARCHAR}, #{authorizeFileType,jdbcType=VARCHAR}, #{authorizeFileName,jdbcType=VARCHAR}, 
+      #{authorzeDate,jdbcType=TIMESTAMP}, #{proTransId,jdbcType=VARCHAR}, #{sellerPhone,jdbcType=VARCHAR}, 
+      #{sellerAddress,jdbcType=VARCHAR}, #{sellerEmail,jdbcType=VARCHAR}, #{sellerRole,jdbcType=VARCHAR}, 
+      #{decisionFileType,jdbcType=VARCHAR}, #{economyNature,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity2.CaaeSeller2" >
+    insert into PRAPP.CAAE_SELLER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        SELLER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME,
+      </if>
+      <if test="sellerType != null" >
+        SELLER_TYPE,
+      </if>
+      <if test="sellerCode != null" >
+        SELLER_CODE,
+      </if>
+      <if test="hqCode != null" >
+        HQ_CODE,
+      </if>
+      <if test="hqName != null" >
+        HQ_NAME,
+      </if>
+      <if test="monitorName != null" >
+        MONITOR_NAME,
+      </if>
+      <if test="monitorArea != null" >
+        MONITOR_AREA,
+      </if>
+      <if test="industyCode != null" >
+        INDUSTY_CODE,
+      </if>
+      <if test="zone != null" >
+        ZONE,
+      </if>
+      <if test="managerScale != null" >
+        MANAGER_SCALE,
+      </if>
+      <if test="economyType != null" >
+        ECONOMY_TYPE,
+      </if>
+      <if test="sellerHoldPercent != null" >
+        SELLER_HOLD_PERCENT,
+      </if>
+      <if test="sellPercent != null" >
+        SELL_PERCENT,
+      </if>
+      <if test="authorizeUnit != null" >
+        AUTHORIZE_UNIT,
+      </if>
+      <if test="authorizeFileType != null" >
+        AUTHORIZE_FILE_TYPE,
+      </if>
+      <if test="authorizeFileName != null" >
+        AUTHORIZE_FILE_NAME,
+      </if>
+      <if test="authorzeDate != null" >
+        AUTHORZE_DATE,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="sellerPhone != null" >
+        SELLER_PHONE,
+      </if>
+      <if test="sellerAddress != null" >
+        SELLER_ADDRESS,
+      </if>
+      <if test="sellerEmail != null" >
+        SELLER_EMAIL,
+      </if>
+      <if test="sellerRole != null" >
+        SELLER_ROLE,
+      </if>
+      <if test="decisionFileType != null" >
+        DECISION_FILE_TYPE,
+      </if>
+      <if test="economyNature != null" >
+        ECONOMY_NATURE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sellerId != null" >
+        #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerType != null" >
+        #{sellerType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCode != null" >
+        #{sellerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hqCode != null" >
+        #{hqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hqName != null" >
+        #{hqName,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorName != null" >
+        #{monitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorArea != null" >
+        #{monitorArea,jdbcType=VARCHAR},
+      </if>
+      <if test="industyCode != null" >
+        #{industyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zone != null" >
+        #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="managerScale != null" >
+        #{managerScale,jdbcType=VARCHAR},
+      </if>
+      <if test="economyType != null" >
+        #{economyType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerHoldPercent != null" >
+        #{sellerHoldPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="sellPercent != null" >
+        #{sellPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="authorizeUnit != null" >
+        #{authorizeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeFileType != null" >
+        #{authorizeFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeFileName != null" >
+        #{authorizeFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorzeDate != null" >
+        #{authorzeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null" >
+        #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAddress != null" >
+        #{sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerEmail != null" >
+        #{sellerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerRole != null" >
+        #{sellerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="decisionFileType != null" >
+        #{decisionFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="economyNature != null" >
+        #{economyNature,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity2.CaaeSeller2Example" resultType="java.lang.Integer" >
+    select count(*) from PRAPP.CAAE_SELLER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRAPP.CAAE_SELLER
+    <set >
+      <if test="record.sellerId != null" >
+        SELLER_ID = #{record.sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerName != null" >
+        SELLER_NAME = #{record.sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerType != null" >
+        SELLER_TYPE = #{record.sellerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerCode != null" >
+        SELLER_CODE = #{record.sellerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hqCode != null" >
+        HQ_CODE = #{record.hqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hqName != null" >
+        HQ_NAME = #{record.hqName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monitorName != null" >
+        MONITOR_NAME = #{record.monitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.monitorArea != null" >
+        MONITOR_AREA = #{record.monitorArea,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industyCode != null" >
+        INDUSTY_CODE = #{record.industyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zone != null" >
+        ZONE = #{record.zone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerScale != null" >
+        MANAGER_SCALE = #{record.managerScale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economyType != null" >
+        ECONOMY_TYPE = #{record.economyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerHoldPercent != null" >
+        SELLER_HOLD_PERCENT = #{record.sellerHoldPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sellPercent != null" >
+        SELL_PERCENT = #{record.sellPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.authorizeUnit != null" >
+        AUTHORIZE_UNIT = #{record.authorizeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorizeFileType != null" >
+        AUTHORIZE_FILE_TYPE = #{record.authorizeFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorizeFileName != null" >
+        AUTHORIZE_FILE_NAME = #{record.authorizeFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorzeDate != null" >
+        AUTHORZE_DATE = #{record.authorzeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerPhone != null" >
+        SELLER_PHONE = #{record.sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerAddress != null" >
+        SELLER_ADDRESS = #{record.sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerEmail != null" >
+        SELLER_EMAIL = #{record.sellerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerRole != null" >
+        SELLER_ROLE = #{record.sellerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.decisionFileType != null" >
+        DECISION_FILE_TYPE = #{record.decisionFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economyNature != null" >
+        ECONOMY_NATURE = #{record.economyNature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRAPP.CAAE_SELLER
+    set SELLER_ID = #{record.sellerId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      SELLER_NAME = #{record.sellerName,jdbcType=VARCHAR},
+      SELLER_TYPE = #{record.sellerType,jdbcType=VARCHAR},
+      SELLER_CODE = #{record.sellerCode,jdbcType=VARCHAR},
+      HQ_CODE = #{record.hqCode,jdbcType=VARCHAR},
+      HQ_NAME = #{record.hqName,jdbcType=VARCHAR},
+      MONITOR_NAME = #{record.monitorName,jdbcType=VARCHAR},
+      MONITOR_AREA = #{record.monitorArea,jdbcType=VARCHAR},
+      INDUSTY_CODE = #{record.industyCode,jdbcType=VARCHAR},
+      ZONE = #{record.zone,jdbcType=VARCHAR},
+      MANAGER_SCALE = #{record.managerScale,jdbcType=VARCHAR},
+      ECONOMY_TYPE = #{record.economyType,jdbcType=VARCHAR},
+      SELLER_HOLD_PERCENT = #{record.sellerHoldPercent,jdbcType=DECIMAL},
+      SELL_PERCENT = #{record.sellPercent,jdbcType=DECIMAL},
+      AUTHORIZE_UNIT = #{record.authorizeUnit,jdbcType=VARCHAR},
+      AUTHORIZE_FILE_TYPE = #{record.authorizeFileType,jdbcType=VARCHAR},
+      AUTHORIZE_FILE_NAME = #{record.authorizeFileName,jdbcType=VARCHAR},
+      AUTHORZE_DATE = #{record.authorzeDate,jdbcType=TIMESTAMP},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      SELLER_PHONE = #{record.sellerPhone,jdbcType=VARCHAR},
+      SELLER_ADDRESS = #{record.sellerAddress,jdbcType=VARCHAR},
+      SELLER_EMAIL = #{record.sellerEmail,jdbcType=VARCHAR},
+      SELLER_ROLE = #{record.sellerRole,jdbcType=VARCHAR},
+      DECISION_FILE_TYPE = #{record.decisionFileType,jdbcType=VARCHAR},
+      ECONOMY_NATURE = #{record.economyNature,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity2.CaaeSeller2" >
+    update PRAPP.CAAE_SELLER
+    <set >
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerName != null" >
+        SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerType != null" >
+        SELLER_TYPE = #{sellerType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerCode != null" >
+        SELLER_CODE = #{sellerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hqCode != null" >
+        HQ_CODE = #{hqCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hqName != null" >
+        HQ_NAME = #{hqName,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorName != null" >
+        MONITOR_NAME = #{monitorName,jdbcType=VARCHAR},
+      </if>
+      <if test="monitorArea != null" >
+        MONITOR_AREA = #{monitorArea,jdbcType=VARCHAR},
+      </if>
+      <if test="industyCode != null" >
+        INDUSTY_CODE = #{industyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="zone != null" >
+        ZONE = #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="managerScale != null" >
+        MANAGER_SCALE = #{managerScale,jdbcType=VARCHAR},
+      </if>
+      <if test="economyType != null" >
+        ECONOMY_TYPE = #{economyType,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerHoldPercent != null" >
+        SELLER_HOLD_PERCENT = #{sellerHoldPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="sellPercent != null" >
+        SELL_PERCENT = #{sellPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="authorizeUnit != null" >
+        AUTHORIZE_UNIT = #{authorizeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeFileType != null" >
+        AUTHORIZE_FILE_TYPE = #{authorizeFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeFileName != null" >
+        AUTHORIZE_FILE_NAME = #{authorizeFileName,jdbcType=VARCHAR},
+      </if>
+      <if test="authorzeDate != null" >
+        AUTHORZE_DATE = #{authorzeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerPhone != null" >
+        SELLER_PHONE = #{sellerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAddress != null" >
+        SELLER_ADDRESS = #{sellerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerEmail != null" >
+        SELLER_EMAIL = #{sellerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerRole != null" >
+        SELLER_ROLE = #{sellerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="decisionFileType != null" >
+        DECISION_FILE_TYPE = #{decisionFileType,jdbcType=VARCHAR},
+      </if>
+      <if test="economyNature != null" >
+        ECONOMY_NATURE = #{economyNature,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SELLER_ID = #{sellerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity2.CaaeSeller2" >
+    update PRAPP.CAAE_SELLER
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      SELLER_NAME = #{sellerName,jdbcType=VARCHAR},
+      SELLER_TYPE = #{sellerType,jdbcType=VARCHAR},
+      SELLER_CODE = #{sellerCode,jdbcType=VARCHAR},
+      HQ_CODE = #{hqCode,jdbcType=VARCHAR},
+      HQ_NAME = #{hqName,jdbcType=VARCHAR},
+      MONITOR_NAME = #{monitorName,jdbcType=VARCHAR},
+      MONITOR_AREA = #{monitorArea,jdbcType=VARCHAR},
+      INDUSTY_CODE = #{industyCode,jdbcType=VARCHAR},
+      ZONE = #{zone,jdbcType=VARCHAR},
+      MANAGER_SCALE = #{managerScale,jdbcType=VARCHAR},
+      ECONOMY_TYPE = #{economyType,jdbcType=VARCHAR},
+      SELLER_HOLD_PERCENT = #{sellerHoldPercent,jdbcType=DECIMAL},
+      SELL_PERCENT = #{sellPercent,jdbcType=DECIMAL},
+      AUTHORIZE_UNIT = #{authorizeUnit,jdbcType=VARCHAR},
+      AUTHORIZE_FILE_TYPE = #{authorizeFileType,jdbcType=VARCHAR},
+      AUTHORIZE_FILE_NAME = #{authorizeFileName,jdbcType=VARCHAR},
+      AUTHORZE_DATE = #{authorzeDate,jdbcType=TIMESTAMP},
+      PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      SELLER_PHONE = #{sellerPhone,jdbcType=VARCHAR},
+      SELLER_ADDRESS = #{sellerAddress,jdbcType=VARCHAR},
+      SELLER_EMAIL = #{sellerEmail,jdbcType=VARCHAR},
+      SELLER_ROLE = #{sellerRole,jdbcType=VARCHAR},
+      DECISION_FILE_TYPE = #{decisionFileType,jdbcType=VARCHAR},
+      ECONOMY_NATURE = #{economyNature,jdbcType=VARCHAR}
+    where SELLER_ID = #{sellerId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao2.CaaeAddPub2Mapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity2.CaaeAddPub2" >
+    <id column="ADD_PUB_ID" property="addPubId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="ADDITIONAL_DATE" property="additionalDate" jdbcType="TIMESTAMP" />
+    <result column="ADDITIONAL_CONTENT_BEFORE" property="additionalContentBefore" jdbcType="VARCHAR" />
+    <result column="ADDITIONAL_CONTENT_AFTER" property="additionalContentAfter" jdbcType="VARCHAR" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ADD_PUB_ID, CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+    TRAD_INSTITUTION_NAME, PROJECT_TYPE, ADDITIONAL_DATE, ADDITIONAL_CONTENT_BEFORE, 
+    ADDITIONAL_CONTENT_AFTER, PRO_TRANS_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity2.CaaeAddPub2Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_ADD_PUB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_ADD_PUB
+    where ADD_PUB_ID = #{addPubId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRAPP.CAAE_ADD_PUB
+    where ADD_PUB_ID = #{addPubId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity2.CaaeAddPub2Example" >
+    delete from PRAPP.CAAE_ADD_PUB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity2.CaaeAddPub2" >
+    insert into PRAPP.CAAE_ADD_PUB (ADD_PUB_ID, CREATE_TIME, LAST_UPDATE_TIME, 
+      PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+      TRAD_INSTITUTION_NAME, PROJECT_TYPE, ADDITIONAL_DATE, 
+      ADDITIONAL_CONTENT_BEFORE, ADDITIONAL_CONTENT_AFTER, 
+      PRO_TRANS_ID)
+    values (#{addPubId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{platformId,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, 
+      #{tradInstitutionName,jdbcType=VARCHAR}, #{projectType,jdbcType=VARCHAR}, #{additionalDate,jdbcType=TIMESTAMP}, 
+      #{additionalContentBefore,jdbcType=VARCHAR}, #{additionalContentAfter,jdbcType=VARCHAR}, 
+      #{proTransId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity2.CaaeAddPub2" >
+    insert into PRAPP.CAAE_ADD_PUB
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addPubId != null" >
+        ADD_PUB_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="additionalDate != null" >
+        ADDITIONAL_DATE,
+      </if>
+      <if test="additionalContentBefore != null" >
+        ADDITIONAL_CONTENT_BEFORE,
+      </if>
+      <if test="additionalContentAfter != null" >
+        ADDITIONAL_CONTENT_AFTER,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addPubId != null" >
+        #{addPubId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="additionalDate != null" >
+        #{additionalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="additionalContentBefore != null" >
+        #{additionalContentBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="additionalContentAfter != null" >
+        #{additionalContentAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity2.CaaeAddPub2Example" resultType="java.lang.Integer" >
+    select count(*) from PRAPP.CAAE_ADD_PUB
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRAPP.CAAE_ADD_PUB
+    <set >
+      <if test="record.addPubId != null" >
+        ADD_PUB_ID = #{record.addPubId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.additionalDate != null" >
+        ADDITIONAL_DATE = #{record.additionalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.additionalContentBefore != null" >
+        ADDITIONAL_CONTENT_BEFORE = #{record.additionalContentBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.additionalContentAfter != null" >
+        ADDITIONAL_CONTENT_AFTER = #{record.additionalContentAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRAPP.CAAE_ADD_PUB
+    set ADD_PUB_ID = #{record.addPubId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      ADDITIONAL_DATE = #{record.additionalDate,jdbcType=TIMESTAMP},
+      ADDITIONAL_CONTENT_BEFORE = #{record.additionalContentBefore,jdbcType=VARCHAR},
+      ADDITIONAL_CONTENT_AFTER = #{record.additionalContentAfter,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity2.CaaeAddPub2" >
+    update PRAPP.CAAE_ADD_PUB
+    <set >
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="additionalDate != null" >
+        ADDITIONAL_DATE = #{additionalDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="additionalContentBefore != null" >
+        ADDITIONAL_CONTENT_BEFORE = #{additionalContentBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="additionalContentAfter != null" >
+        ADDITIONAL_CONTENT_AFTER = #{additionalContentAfter,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ADD_PUB_ID = #{addPubId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity2.CaaeAddPub2" >
+    update PRAPP.CAAE_ADD_PUB
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      ADDITIONAL_DATE = #{additionalDate,jdbcType=TIMESTAMP},
+      ADDITIONAL_CONTENT_BEFORE = #{additionalContentBefore,jdbcType=VARCHAR},
+      ADDITIONAL_CONTENT_AFTER = #{additionalContentAfter,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR}
+    where ADD_PUB_ID = #{addPubId,jdbcType=VARCHAR}
+  </update>
+</mapper>

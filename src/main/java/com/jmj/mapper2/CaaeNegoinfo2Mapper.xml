@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao2.CaaeNegoinfo2Mapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity2.CaaeNegoinfo2" >
+    <id column="NEGO_INFO_ID" property="negoInfoId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="INVESTOR" property="investor" jdbcType="VARCHAR" />
+    <result column="NEGO_PRICE" property="negoPrice" jdbcType="DECIMAL" />
+    <result column="NEGO_PERCENT" property="negoPercent" jdbcType="DECIMAL" />
+    <result column="NEGO_AMOUNT" property="negoAmount" jdbcType="DECIMAL" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="NEGO_PROMISE" property="negoPromise" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    NEGO_INFO_ID, CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+    TRAD_INSTITUTION_NAME, PROJECT_TYPE, INVESTOR, NEGO_PRICE, NEGO_PERCENT, NEGO_AMOUNT, 
+    PRO_TRANS_ID, NEGO_PROMISE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity2.CaaeNegoinfo2Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_NEGOINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_NEGOINFO
+    where NEGO_INFO_ID = #{negoInfoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRAPP.CAAE_NEGOINFO
+    where NEGO_INFO_ID = #{negoInfoId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity2.CaaeNegoinfo2Example" >
+    delete from PRAPP.CAAE_NEGOINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity2.CaaeNegoinfo2" >
+    insert into PRAPP.CAAE_NEGOINFO (NEGO_INFO_ID, CREATE_TIME, LAST_UPDATE_TIME, 
+      PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+      TRAD_INSTITUTION_NAME, PROJECT_TYPE, INVESTOR, 
+      NEGO_PRICE, NEGO_PERCENT, NEGO_AMOUNT, 
+      PRO_TRANS_ID, NEGO_PROMISE)
+    values (#{negoInfoId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{platformId,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, 
+      #{tradInstitutionName,jdbcType=VARCHAR}, #{projectType,jdbcType=VARCHAR}, #{investor,jdbcType=VARCHAR}, 
+      #{negoPrice,jdbcType=DECIMAL}, #{negoPercent,jdbcType=DECIMAL}, #{negoAmount,jdbcType=DECIMAL}, 
+      #{proTransId,jdbcType=VARCHAR}, #{negoPromise,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity2.CaaeNegoinfo2" >
+    insert into PRAPP.CAAE_NEGOINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="negoInfoId != null" >
+        NEGO_INFO_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="investor != null" >
+        INVESTOR,
+      </if>
+      <if test="negoPrice != null" >
+        NEGO_PRICE,
+      </if>
+      <if test="negoPercent != null" >
+        NEGO_PERCENT,
+      </if>
+      <if test="negoAmount != null" >
+        NEGO_AMOUNT,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="negoPromise != null" >
+        NEGO_PROMISE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="negoInfoId != null" >
+        #{negoInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="investor != null" >
+        #{investor,jdbcType=VARCHAR},
+      </if>
+      <if test="negoPrice != null" >
+        #{negoPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="negoPercent != null" >
+        #{negoPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="negoAmount != null" >
+        #{negoAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="negoPromise != null" >
+        #{negoPromise,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity2.CaaeNegoinfo2Example" resultType="java.lang.Integer" >
+    select count(*) from PRAPP.CAAE_NEGOINFO
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRAPP.CAAE_NEGOINFO
+    <set >
+      <if test="record.negoInfoId != null" >
+        NEGO_INFO_ID = #{record.negoInfoId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investor != null" >
+        INVESTOR = #{record.investor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.negoPrice != null" >
+        NEGO_PRICE = #{record.negoPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.negoPercent != null" >
+        NEGO_PERCENT = #{record.negoPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.negoAmount != null" >
+        NEGO_AMOUNT = #{record.negoAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.negoPromise != null" >
+        NEGO_PROMISE = #{record.negoPromise,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRAPP.CAAE_NEGOINFO
+    set NEGO_INFO_ID = #{record.negoInfoId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      INVESTOR = #{record.investor,jdbcType=VARCHAR},
+      NEGO_PRICE = #{record.negoPrice,jdbcType=DECIMAL},
+      NEGO_PERCENT = #{record.negoPercent,jdbcType=DECIMAL},
+      NEGO_AMOUNT = #{record.negoAmount,jdbcType=DECIMAL},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      NEGO_PROMISE = #{record.negoPromise,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity2.CaaeNegoinfo2" >
+    update PRAPP.CAAE_NEGOINFO
+    <set >
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="investor != null" >
+        INVESTOR = #{investor,jdbcType=VARCHAR},
+      </if>
+      <if test="negoPrice != null" >
+        NEGO_PRICE = #{negoPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="negoPercent != null" >
+        NEGO_PERCENT = #{negoPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="negoAmount != null" >
+        NEGO_AMOUNT = #{negoAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="negoPromise != null" >
+        NEGO_PROMISE = #{negoPromise,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where NEGO_INFO_ID = #{negoInfoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity2.CaaeNegoinfo2" >
+    update PRAPP.CAAE_NEGOINFO
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      INVESTOR = #{investor,jdbcType=VARCHAR},
+      NEGO_PRICE = #{negoPrice,jdbcType=DECIMAL},
+      NEGO_PERCENT = #{negoPercent,jdbcType=DECIMAL},
+      NEGO_AMOUNT = #{negoAmount,jdbcType=DECIMAL},
+      PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      NEGO_PROMISE = #{negoPromise,jdbcType=VARCHAR}
+    where NEGO_INFO_ID = #{negoInfoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

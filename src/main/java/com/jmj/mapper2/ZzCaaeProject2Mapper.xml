@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao2.ZzCaaeProject2Mapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity2.ZzCaaeProject2" >
+    <id column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_INFO" property="importantInfo" jdbcType="VARCHAR" />
+    <result column="INVEST_POSTULATE" property="investPostulate" jdbcType="VARCHAR" />
+    <result column="DEAL_CONDITIONS" property="dealConditions" jdbcType="VARCHAR" />
+    <result column="HAS_INVEST_INTENT" property="hasInvestIntent" jdbcType="VARCHAR" />
+    <result column="CAPITAL_PLAN" property="capitalPlan" jdbcType="VARCHAR" />
+    <result column="USE_OF_RAISED_FUNDS" property="useOfRaisedFunds" jdbcType="VARCHAR" />
+    <result column="PUB_SELECTION_METHODS" property="pubSelectionMethods" jdbcType="VARCHAR" />
+    <result column="FINANCE_PERCENT" property="financePercent" jdbcType="OTHER" />
+    <result column="FINANCE_AMOUNT" property="financeAmount" jdbcType="OTHER" />
+    <result column="LAST_SELECTION_METHOD" property="lastSelectionMethod" jdbcType="VARCHAR" />
+    <result column="LAST_SELECTION_DATE" property="lastSelectionDate" jdbcType="TIMESTAMP" />
+    <result column="SHORTLIST_EXPLAIN" property="shortlistExplain" jdbcType="VARCHAR" />
+    <result column="TERMINATE_APPROVAL" property="terminateApproval" jdbcType="VARCHAR" />
+    <result column="FINAL_ECONOMY_TYPE" property="finalEconomyType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UUID, PRO_TRANS_ID, IMPORTANT_INFO, INVEST_POSTULATE, DEAL_CONDITIONS, HAS_INVEST_INTENT, 
+    CAPITAL_PLAN, USE_OF_RAISED_FUNDS, PUB_SELECTION_METHODS, FINANCE_PERCENT, FINANCE_AMOUNT, 
+    LAST_SELECTION_METHOD, LAST_SELECTION_DATE, SHORTLIST_EXPLAIN, TERMINATE_APPROVAL,FINAL_ECONOMY_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity2.ZzCaaeProject2Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRAPP.ZZ_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRAPP.ZZ_CAAE_PROJECT
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRAPP.ZZ_CAAE_PROJECT
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity2.ZzCaaeProject2Example" >
+    delete from PRAPP.ZZ_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity2.ZzCaaeProject2" >
+    insert into PRAPP.ZZ_CAAE_PROJECT (UUID, PRO_TRANS_ID, IMPORTANT_INFO, 
+      INVEST_POSTULATE, DEAL_CONDITIONS, HAS_INVEST_INTENT, 
+      CAPITAL_PLAN, USE_OF_RAISED_FUNDS, PUB_SELECTION_METHODS, 
+      FINANCE_PERCENT, FINANCE_AMOUNT, LAST_SELECTION_METHOD, 
+      LAST_SELECTION_DATE, SHORTLIST_EXPLAIN, 
+      TERMINATE_APPROVAL,FINAL_ECONOMY_TYPE)
+    values (#{uuid,jdbcType=VARCHAR}, #{proTransId,jdbcType=VARCHAR}, #{importantInfo,jdbcType=VARCHAR}, 
+      #{investPostulate,jdbcType=VARCHAR}, #{dealConditions,jdbcType=VARCHAR}, #{hasInvestIntent,jdbcType=VARCHAR}, 
+      #{capitalPlan,jdbcType=VARCHAR}, #{useOfRaisedFunds,jdbcType=VARCHAR}, #{pubSelectionMethods,jdbcType=VARCHAR}, 
+      #{financePercent,jdbcType=OTHER}, #{financeAmount,jdbcType=OTHER}, #{lastSelectionMethod,jdbcType=VARCHAR}, 
+      #{lastSelectionDate,jdbcType=TIMESTAMP}, #{shortlistExplain,jdbcType=VARCHAR}, 
+      #{terminateApproval,jdbcType=VARCHAR},#{finalEconomyType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity2.ZzCaaeProject2" >
+    insert into PRAPP.ZZ_CAAE_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="importantInfo != null" >
+        IMPORTANT_INFO,
+      </if>
+      <if test="investPostulate != null" >
+        INVEST_POSTULATE,
+      </if>
+      <if test="dealConditions != null" >
+        DEAL_CONDITIONS,
+      </if>
+      <if test="hasInvestIntent != null" >
+        HAS_INVEST_INTENT,
+      </if>
+      <if test="capitalPlan != null" >
+        CAPITAL_PLAN,
+      </if>
+      <if test="useOfRaisedFunds != null" >
+        USE_OF_RAISED_FUNDS,
+      </if>
+      <if test="pubSelectionMethods != null" >
+        PUB_SELECTION_METHODS,
+      </if>
+      <if test="financePercent != null" >
+        FINANCE_PERCENT,
+      </if>
+      <if test="financeAmount != null" >
+        FINANCE_AMOUNT,
+      </if>
+      <if test="lastSelectionMethod != null" >
+        LAST_SELECTION_METHOD,
+      </if>
+      <if test="lastSelectionDate != null" >
+        LAST_SELECTION_DATE,
+      </if>
+      <if test="shortlistExplain != null" >
+        SHORTLIST_EXPLAIN,
+      </if>
+      <if test="terminateApproval != null" >
+        TERMINATE_APPROVAL,
+      </if>
+      <if test="finalEconomyType != null">
+      	FINAL_ECONOMY_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="importantInfo != null" >
+        #{importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="investPostulate != null" >
+        #{investPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="dealConditions != null" >
+        #{dealConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="hasInvestIntent != null" >
+        #{hasInvestIntent,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPlan != null" >
+        #{capitalPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="useOfRaisedFunds != null" >
+        #{useOfRaisedFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="pubSelectionMethods != null" >
+        #{pubSelectionMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="financePercent != null" >
+        #{financePercent,jdbcType=OTHER},
+      </if>
+      <if test="financeAmount != null" >
+        #{financeAmount,jdbcType=OTHER},
+      </if>
+      <if test="lastSelectionMethod != null" >
+        #{lastSelectionMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSelectionDate != null" >
+        #{lastSelectionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shortlistExplain != null" >
+        #{shortlistExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="terminateApproval != null" >
+        #{terminateApproval,jdbcType=VARCHAR},
+      </if>
+      <if test="finalEconomyType != null" >
+        #{finalEconomyType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity2.ZzCaaeProject2Example" resultType="java.lang.Integer" >
+    select count(*) from PRAPP.ZZ_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRAPP.ZZ_CAAE_PROJECT
+    <set >
+      <if test="record.uuid != null" >
+        UUID = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importantInfo != null" >
+        IMPORTANT_INFO = #{record.importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investPostulate != null" >
+        INVEST_POSTULATE = #{record.investPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dealConditions != null" >
+        DEAL_CONDITIONS = #{record.dealConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasInvestIntent != null" >
+        HAS_INVEST_INTENT = #{record.hasInvestIntent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.capitalPlan != null" >
+        CAPITAL_PLAN = #{record.capitalPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useOfRaisedFunds != null" >
+        USE_OF_RAISED_FUNDS = #{record.useOfRaisedFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubSelectionMethods != null" >
+        PUB_SELECTION_METHODS = #{record.pubSelectionMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="record.financePercent != null" >
+        FINANCE_PERCENT = #{record.financePercent,jdbcType=OTHER},
+      </if>
+      <if test="record.financeAmount != null" >
+        FINANCE_AMOUNT = #{record.financeAmount,jdbcType=OTHER},
+      </if>
+      <if test="record.lastSelectionMethod != null" >
+        LAST_SELECTION_METHOD = #{record.lastSelectionMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastSelectionDate != null" >
+        LAST_SELECTION_DATE = #{record.lastSelectionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shortlistExplain != null" >
+        SHORTLIST_EXPLAIN = #{record.shortlistExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.terminateApproval != null" >
+        TERMINATE_APPROVAL = #{record.terminateApproval,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalEconomyType != null">
+      	FINAL_ECONOMY_TYPE = #{record.finalEconomyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRAPP.ZZ_CAAE_PROJECT
+    set UUID = #{record.uuid,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      IMPORTANT_INFO = #{record.importantInfo,jdbcType=VARCHAR},
+      INVEST_POSTULATE = #{record.investPostulate,jdbcType=VARCHAR},
+      DEAL_CONDITIONS = #{record.dealConditions,jdbcType=VARCHAR},
+      HAS_INVEST_INTENT = #{record.hasInvestIntent,jdbcType=VARCHAR},
+      CAPITAL_PLAN = #{record.capitalPlan,jdbcType=VARCHAR},
+      USE_OF_RAISED_FUNDS = #{record.useOfRaisedFunds,jdbcType=VARCHAR},
+      PUB_SELECTION_METHODS = #{record.pubSelectionMethods,jdbcType=VARCHAR},
+      FINANCE_PERCENT = #{record.financePercent,jdbcType=OTHER},
+      FINANCE_AMOUNT = #{record.financeAmount,jdbcType=OTHER},
+      LAST_SELECTION_METHOD = #{record.lastSelectionMethod,jdbcType=VARCHAR},
+      LAST_SELECTION_DATE = #{record.lastSelectionDate,jdbcType=TIMESTAMP},
+      SHORTLIST_EXPLAIN = #{record.shortlistExplain,jdbcType=VARCHAR},
+      TERMINATE_APPROVAL = #{record.terminateApproval,jdbcType=VARCHAR},
+      FINAL_ECONOMY_TYPE = #{record.finalEconomyType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity2.ZzCaaeProject2" >
+    update PRAPP.ZZ_CAAE_PROJECT
+    <set >
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="importantInfo != null" >
+        IMPORTANT_INFO = #{importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="investPostulate != null" >
+        INVEST_POSTULATE = #{investPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="dealConditions != null" >
+        DEAL_CONDITIONS = #{dealConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="hasInvestIntent != null" >
+        HAS_INVEST_INTENT = #{hasInvestIntent,jdbcType=VARCHAR},
+      </if>
+      <if test="capitalPlan != null" >
+        CAPITAL_PLAN = #{capitalPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="useOfRaisedFunds != null" >
+        USE_OF_RAISED_FUNDS = #{useOfRaisedFunds,jdbcType=VARCHAR},
+      </if>
+      <if test="pubSelectionMethods != null" >
+        PUB_SELECTION_METHODS = #{pubSelectionMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="financePercent != null" >
+        FINANCE_PERCENT = #{financePercent,jdbcType=OTHER},
+      </if>
+      <if test="financeAmount != null" >
+        FINANCE_AMOUNT = #{financeAmount,jdbcType=OTHER},
+      </if>
+      <if test="lastSelectionMethod != null" >
+        LAST_SELECTION_METHOD = #{lastSelectionMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="lastSelectionDate != null" >
+        LAST_SELECTION_DATE = #{lastSelectionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shortlistExplain != null" >
+        SHORTLIST_EXPLAIN = #{shortlistExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="terminateApproval != null" >
+        TERMINATE_APPROVAL = #{terminateApproval,jdbcType=VARCHAR},
+      </if>
+      <if test="finalEconomyType != null">
+      	FINAL_ECONOMY_TYPE = #{finalEconomyType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity2.ZzCaaeProject2" >
+    update PRAPP.ZZ_CAAE_PROJECT
+    set PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      IMPORTANT_INFO = #{importantInfo,jdbcType=VARCHAR},
+      INVEST_POSTULATE = #{investPostulate,jdbcType=VARCHAR},
+      DEAL_CONDITIONS = #{dealConditions,jdbcType=VARCHAR},
+      HAS_INVEST_INTENT = #{hasInvestIntent,jdbcType=VARCHAR},
+      CAPITAL_PLAN = #{capitalPlan,jdbcType=VARCHAR},
+      USE_OF_RAISED_FUNDS = #{useOfRaisedFunds,jdbcType=VARCHAR},
+      PUB_SELECTION_METHODS = #{pubSelectionMethods,jdbcType=VARCHAR},
+      FINANCE_PERCENT = #{financePercent,jdbcType=OTHER},
+      FINANCE_AMOUNT = #{financeAmount,jdbcType=OTHER},
+      LAST_SELECTION_METHOD = #{lastSelectionMethod,jdbcType=VARCHAR},
+      LAST_SELECTION_DATE = #{lastSelectionDate,jdbcType=TIMESTAMP},
+      SHORTLIST_EXPLAIN = #{shortlistExplain,jdbcType=VARCHAR},
+      TERMINATE_APPROVAL = #{terminateApproval,jdbcType=VARCHAR},
+      FINAL_ECONOMY_TYPE = #{finalEconomyType,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

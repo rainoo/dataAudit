@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao2.CaaeAssess2Mapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity2.CaaeAssess2" >
+    <id column="ASSESS_ID" property="assessId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="EVALUATE_UNIT" property="evaluateUnit" jdbcType="VARCHAR" />
+    <result column="APPROVE_UNIT" property="approveUnit" jdbcType="VARCHAR" />
+    <result column="APPROVE_DATE" property="approveDate" jdbcType="TIMESTAMP" />
+    <result column="EVALUATE_DATE" property="evaluateDate" jdbcType="TIMESTAMP" />
+    <result column="EVALUATE_DATE_AUDITOR" property="evaluateDateAuditor" jdbcType="VARCHAR" />
+    <result column="EVALUATE_ASSET" property="evaluateAsset" jdbcType="DECIMAL" />
+    <result column="EVALUATE_EQUITY" property="evaluateEquity" jdbcType="DECIMAL" />
+    <result column="EVALUATE_DEBT" property="evaluateDebt" jdbcType="DECIMAL" />
+    <result column="BOOK_ASSET" property="bookAsset" jdbcType="DECIMAL" />
+    <result column="BOOK_EQUITY" property="bookEquity" jdbcType="DECIMAL" />
+    <result column="BOOK_DEBT" property="bookDebt" jdbcType="DECIMAL" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="OBJECT_EVALUATE_VALUE" property="objectEvaluateValue" jdbcType="DECIMAL" />
+    <result column="LAW_FIRM" property="lawFirm" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ASSESS_ID, CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+    TRAD_INSTITUTION_NAME, PROJECT_TYPE, EVALUATE_UNIT, APPROVE_UNIT, APPROVE_DATE, EVALUATE_DATE, 
+    EVALUATE_DATE_AUDITOR, EVALUATE_ASSET, EVALUATE_EQUITY, EVALUATE_DEBT, BOOK_ASSET, 
+    BOOK_EQUITY, BOOK_DEBT, PRO_TRANS_ID, OBJECT_EVALUATE_VALUE, LAW_FIRM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity2.CaaeAssess2Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_ASSESS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRAPP.CAAE_ASSESS
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRAPP.CAAE_ASSESS
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity2.CaaeAssess2Example" >
+    delete from PRAPP.CAAE_ASSESS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity2.CaaeAssess2" >
+    insert into PRAPP.CAAE_ASSESS (ASSESS_ID, CREATE_TIME, LAST_UPDATE_TIME, 
+      PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, 
+      TRAD_INSTITUTION_NAME, PROJECT_TYPE, EVALUATE_UNIT, 
+      APPROVE_UNIT, APPROVE_DATE, EVALUATE_DATE, 
+      EVALUATE_DATE_AUDITOR, EVALUATE_ASSET, EVALUATE_EQUITY, 
+      EVALUATE_DEBT, BOOK_ASSET, BOOK_EQUITY, 
+      BOOK_DEBT, PRO_TRANS_ID, OBJECT_EVALUATE_VALUE, 
+      LAW_FIRM)
+    values (#{assessId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{platformId,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, 
+      #{tradInstitutionName,jdbcType=VARCHAR}, #{projectType,jdbcType=VARCHAR}, #{evaluateUnit,jdbcType=VARCHAR}, 
+      #{approveUnit,jdbcType=VARCHAR}, #{approveDate,jdbcType=TIMESTAMP}, #{evaluateDate,jdbcType=TIMESTAMP}, 
+      #{evaluateDateAuditor,jdbcType=VARCHAR}, #{evaluateAsset,jdbcType=DECIMAL}, #{evaluateEquity,jdbcType=DECIMAL}, 
+      #{evaluateDebt,jdbcType=DECIMAL}, #{bookAsset,jdbcType=DECIMAL}, #{bookEquity,jdbcType=DECIMAL}, 
+      #{bookDebt,jdbcType=DECIMAL}, #{proTransId,jdbcType=VARCHAR}, #{objectEvaluateValue,jdbcType=DECIMAL}, 
+      #{lawFirm,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity2.CaaeAssess2" >
+    insert into PRAPP.CAAE_ASSESS
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="assessId != null" >
+        ASSESS_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="evaluateUnit != null" >
+        EVALUATE_UNIT,
+      </if>
+      <if test="approveUnit != null" >
+        APPROVE_UNIT,
+      </if>
+      <if test="approveDate != null" >
+        APPROVE_DATE,
+      </if>
+      <if test="evaluateDate != null" >
+        EVALUATE_DATE,
+      </if>
+      <if test="evaluateDateAuditor != null" >
+        EVALUATE_DATE_AUDITOR,
+      </if>
+      <if test="evaluateAsset != null" >
+        EVALUATE_ASSET,
+      </if>
+      <if test="evaluateEquity != null" >
+        EVALUATE_EQUITY,
+      </if>
+      <if test="evaluateDebt != null" >
+        EVALUATE_DEBT,
+      </if>
+      <if test="bookAsset != null" >
+        BOOK_ASSET,
+      </if>
+      <if test="bookEquity != null" >
+        BOOK_EQUITY,
+      </if>
+      <if test="bookDebt != null" >
+        BOOK_DEBT,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="objectEvaluateValue != null" >
+        OBJECT_EVALUATE_VALUE,
+      </if>
+      <if test="lawFirm != null" >
+        LAW_FIRM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="assessId != null" >
+        #{assessId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateUnit != null" >
+        #{evaluateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="approveUnit != null" >
+        #{approveUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDate != null" >
+        #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluateDate != null" >
+        #{evaluateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluateDateAuditor != null" >
+        #{evaluateDateAuditor,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateAsset != null" >
+        #{evaluateAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="evaluateEquity != null" >
+        #{evaluateEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="evaluateDebt != null" >
+        #{evaluateDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="bookAsset != null" >
+        #{bookAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="bookEquity != null" >
+        #{bookEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="bookDebt != null" >
+        #{bookDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectEvaluateValue != null" >
+        #{objectEvaluateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lawFirm != null" >
+        #{lawFirm,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity2.CaaeAssess2Example" resultType="java.lang.Integer" >
+    select count(*) from PRAPP.CAAE_ASSESS
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRAPP.CAAE_ASSESS
+    <set >
+      <if test="record.assessId != null" >
+        ASSESS_ID = #{record.assessId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluateUnit != null" >
+        EVALUATE_UNIT = #{record.evaluateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approveUnit != null" >
+        APPROVE_UNIT = #{record.approveUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.approveDate != null" >
+        APPROVE_DATE = #{record.approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.evaluateDate != null" >
+        EVALUATE_DATE = #{record.evaluateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.evaluateDateAuditor != null" >
+        EVALUATE_DATE_AUDITOR = #{record.evaluateDateAuditor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluateAsset != null" >
+        EVALUATE_ASSET = #{record.evaluateAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="record.evaluateEquity != null" >
+        EVALUATE_EQUITY = #{record.evaluateEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.evaluateDebt != null" >
+        EVALUATE_DEBT = #{record.evaluateDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bookAsset != null" >
+        BOOK_ASSET = #{record.bookAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bookEquity != null" >
+        BOOK_EQUITY = #{record.bookEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.bookDebt != null" >
+        BOOK_DEBT = #{record.bookDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectEvaluateValue != null" >
+        OBJECT_EVALUATE_VALUE = #{record.objectEvaluateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.lawFirm != null" >
+        LAW_FIRM = #{record.lawFirm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRAPP.CAAE_ASSESS
+    set ASSESS_ID = #{record.assessId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      EVALUATE_UNIT = #{record.evaluateUnit,jdbcType=VARCHAR},
+      APPROVE_UNIT = #{record.approveUnit,jdbcType=VARCHAR},
+      APPROVE_DATE = #{record.approveDate,jdbcType=TIMESTAMP},
+      EVALUATE_DATE = #{record.evaluateDate,jdbcType=TIMESTAMP},
+      EVALUATE_DATE_AUDITOR = #{record.evaluateDateAuditor,jdbcType=VARCHAR},
+      EVALUATE_ASSET = #{record.evaluateAsset,jdbcType=DECIMAL},
+      EVALUATE_EQUITY = #{record.evaluateEquity,jdbcType=DECIMAL},
+      EVALUATE_DEBT = #{record.evaluateDebt,jdbcType=DECIMAL},
+      BOOK_ASSET = #{record.bookAsset,jdbcType=DECIMAL},
+      BOOK_EQUITY = #{record.bookEquity,jdbcType=DECIMAL},
+      BOOK_DEBT = #{record.bookDebt,jdbcType=DECIMAL},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      OBJECT_EVALUATE_VALUE = #{record.objectEvaluateValue,jdbcType=DECIMAL},
+      LAW_FIRM = #{record.lawFirm,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity2.CaaeAssess2" >
+    update PRAPP.CAAE_ASSESS
+    <set >
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateUnit != null" >
+        EVALUATE_UNIT = #{evaluateUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="approveUnit != null" >
+        APPROVE_UNIT = #{approveUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="approveDate != null" >
+        APPROVE_DATE = #{approveDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluateDate != null" >
+        EVALUATE_DATE = #{evaluateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="evaluateDateAuditor != null" >
+        EVALUATE_DATE_AUDITOR = #{evaluateDateAuditor,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateAsset != null" >
+        EVALUATE_ASSET = #{evaluateAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="evaluateEquity != null" >
+        EVALUATE_EQUITY = #{evaluateEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="evaluateDebt != null" >
+        EVALUATE_DEBT = #{evaluateDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="bookAsset != null" >
+        BOOK_ASSET = #{bookAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="bookEquity != null" >
+        BOOK_EQUITY = #{bookEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="bookDebt != null" >
+        BOOK_DEBT = #{bookDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="objectEvaluateValue != null" >
+        OBJECT_EVALUATE_VALUE = #{objectEvaluateValue,jdbcType=DECIMAL},
+      </if>
+      <if test="lawFirm != null" >
+        LAW_FIRM = #{lawFirm,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity2.CaaeAssess2" >
+    update PRAPP.CAAE_ASSESS
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      EVALUATE_UNIT = #{evaluateUnit,jdbcType=VARCHAR},
+      APPROVE_UNIT = #{approveUnit,jdbcType=VARCHAR},
+      APPROVE_DATE = #{approveDate,jdbcType=TIMESTAMP},
+      EVALUATE_DATE = #{evaluateDate,jdbcType=TIMESTAMP},
+      EVALUATE_DATE_AUDITOR = #{evaluateDateAuditor,jdbcType=VARCHAR},
+      EVALUATE_ASSET = #{evaluateAsset,jdbcType=DECIMAL},
+      EVALUATE_EQUITY = #{evaluateEquity,jdbcType=DECIMAL},
+      EVALUATE_DEBT = #{evaluateDebt,jdbcType=DECIMAL},
+      BOOK_ASSET = #{bookAsset,jdbcType=DECIMAL},
+      BOOK_EQUITY = #{bookEquity,jdbcType=DECIMAL},
+      BOOK_DEBT = #{bookDebt,jdbcType=DECIMAL},
+      PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      OBJECT_EVALUATE_VALUE = #{objectEvaluateValue,jdbcType=DECIMAL},
+      LAW_FIRM = #{lawFirm,jdbcType=VARCHAR}
+    where ASSESS_ID = #{assessId,jdbcType=VARCHAR}
+  </update>
+</mapper>
