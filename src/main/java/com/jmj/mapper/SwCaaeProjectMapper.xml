@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao.SwCaaeProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity.SwCaaeProject" >
+    <id column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_INFO" property="importantInfo" jdbcType="VARCHAR" />
+    <result column="BUYER_POSTULATE" property="buyerPostulate" jdbcType="VARCHAR" />
+    <result column="HAS_PRIORITY" property="hasPriority" jdbcType="VARCHAR" />
+    <result column="PROPERTY" property="property" jdbcType="VARCHAR" />
+    <result column="CATALOG" property="catalog" jdbcType="VARCHAR" />
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="TRANSFER_NOTES" property="transferNotes" jdbcType="VARCHAR" />
+    <result column="IS_BIND" property="isBind" jdbcType="VARCHAR" />
+    <result column="LIMIT_TIME" property="limitTime" jdbcType="DECIMAL" />
+    <result column="ALLOW_END_PRIO" property="allowEndPrio" jdbcType="VARCHAR" />
+    <result column="ALLOW_HOLL_PRIO" property="allowHollPrio" jdbcType="VARCHAR" />
+    <result column="ALLOW_END_BID" property="allowEndBid" jdbcType="VARCHAR" />
+    <result column="IS_COMMISSION" property="isCommission" jdbcType="VARCHAR" />
+    <result column="COM_PERCENT" property="comPercent" jdbcType="DECIMAL" />
+    <result column="COMMISSION" property="commission" jdbcType="DECIMAL" />
+    <result column="INCREMENT_GROUP" property="incrementGroup" jdbcType="VARCHAR" />
+    <result column="INCREMENT_VALUE" property="incrementValue" jdbcType="VARCHAR" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="BUSINESS_STATUS" property="businessStatus" jdbcType="VARCHAR" />
+    <result column="PROJECT_CLASSIFY_CODE" property="projectClassifyCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UUID, PRO_TRANS_ID, IMPORTANT_INFO, BUYER_POSTULATE, HAS_PRIORITY, PROPERTY, CATALOG, 
+    DESCRIPTION, TRANSFER_NOTES, IS_BIND, LIMIT_TIME, ALLOW_END_PRIO, ALLOW_HOLL_PRIO, 
+    ALLOW_END_BID, IS_COMMISSION, COM_PERCENT, COMMISSION, INCREMENT_GROUP, INCREMENT_VALUE, 
+    PROJECT_ID, TRAD_INSTITUTION_ID, BUSINESS_STATUS, PROJECT_CLASSIFY_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity.SwCaaeProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRPROCESS.SW_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRPROCESS.SW_CAAE_PROJECT
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRPROCESS.SW_CAAE_PROJECT
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity.SwCaaeProjectExample" >
+    delete from PRPROCESS.SW_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity.SwCaaeProject" >
+    insert into PRPROCESS.SW_CAAE_PROJECT (UUID, PRO_TRANS_ID, IMPORTANT_INFO, 
+      BUYER_POSTULATE, HAS_PRIORITY, PROPERTY, 
+      CATALOG, DESCRIPTION, TRANSFER_NOTES, 
+      IS_BIND, LIMIT_TIME, ALLOW_END_PRIO, 
+      ALLOW_HOLL_PRIO, ALLOW_END_BID, IS_COMMISSION, 
+      COM_PERCENT, COMMISSION, INCREMENT_GROUP, 
+      INCREMENT_VALUE, PROJECT_ID, TRAD_INSTITUTION_ID, 
+      BUSINESS_STATUS, PROJECT_CLASSIFY_CODE)
+    values (#{uuid,jdbcType=VARCHAR}, #{proTransId,jdbcType=VARCHAR}, #{importantInfo,jdbcType=VARCHAR}, 
+      #{buyerPostulate,jdbcType=VARCHAR}, #{hasPriority,jdbcType=VARCHAR}, #{property,jdbcType=VARCHAR}, 
+      #{catalog,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{transferNotes,jdbcType=VARCHAR}, 
+      #{isBind,jdbcType=VARCHAR}, #{limitTime,jdbcType=DECIMAL}, #{allowEndPrio,jdbcType=VARCHAR}, 
+      #{allowHollPrio,jdbcType=VARCHAR}, #{allowEndBid,jdbcType=VARCHAR}, #{isCommission,jdbcType=VARCHAR}, 
+      #{comPercent,jdbcType=DECIMAL}, #{commission,jdbcType=DECIMAL}, #{incrementGroup,jdbcType=VARCHAR}, 
+      #{incrementValue,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, 
+      #{businessStatus,jdbcType=VARCHAR}, #{projectClassifyCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity.SwCaaeProject" >
+    insert into PRPROCESS.SW_CAAE_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="importantInfo != null" >
+        IMPORTANT_INFO,
+      </if>
+      <if test="buyerPostulate != null" >
+        BUYER_POSTULATE,
+      </if>
+      <if test="hasPriority != null" >
+        HAS_PRIORITY,
+      </if>
+      <if test="property != null" >
+        PROPERTY,
+      </if>
+      <if test="catalog != null" >
+        CATALOG,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+      <if test="transferNotes != null" >
+        TRANSFER_NOTES,
+      </if>
+      <if test="isBind != null" >
+        IS_BIND,
+      </if>
+      <if test="limitTime != null" >
+        LIMIT_TIME,
+      </if>
+      <if test="allowEndPrio != null" >
+        ALLOW_END_PRIO,
+      </if>
+      <if test="allowHollPrio != null" >
+        ALLOW_HOLL_PRIO,
+      </if>
+      <if test="allowEndBid != null" >
+        ALLOW_END_BID,
+      </if>
+      <if test="isCommission != null" >
+        IS_COMMISSION,
+      </if>
+      <if test="comPercent != null" >
+        COM_PERCENT,
+      </if>
+      <if test="commission != null" >
+        COMMISSION,
+      </if>
+      <if test="incrementGroup != null" >
+        INCREMENT_GROUP,
+      </if>
+      <if test="incrementValue != null" >
+        INCREMENT_VALUE,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS,
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="importantInfo != null" >
+        #{importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPostulate != null" >
+        #{buyerPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="hasPriority != null" >
+        #{hasPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="catalog != null" >
+        #{catalog,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="transferNotes != null" >
+        #{transferNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="isBind != null" >
+        #{isBind,jdbcType=VARCHAR},
+      </if>
+      <if test="limitTime != null" >
+        #{limitTime,jdbcType=DECIMAL},
+      </if>
+      <if test="allowEndPrio != null" >
+        #{allowEndPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowHollPrio != null" >
+        #{allowHollPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowEndBid != null" >
+        #{allowEndBid,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommission != null" >
+        #{isCommission,jdbcType=VARCHAR},
+      </if>
+      <if test="comPercent != null" >
+        #{comPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="incrementGroup != null" >
+        #{incrementGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="incrementValue != null" >
+        #{incrementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity.SwCaaeProjectExample" resultType="java.lang.Integer" >
+    select count(*) from PRPROCESS.SW_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRPROCESS.SW_CAAE_PROJECT
+    <set >
+      <if test="record.uuid != null" >
+        UUID = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importantInfo != null" >
+        IMPORTANT_INFO = #{record.importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerPostulate != null" >
+        BUYER_POSTULATE = #{record.buyerPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasPriority != null" >
+        HAS_PRIORITY = #{record.hasPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="record.property != null" >
+        PROPERTY = #{record.property,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catalog != null" >
+        CATALOG = #{record.catalog,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transferNotes != null" >
+        TRANSFER_NOTES = #{record.transferNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBind != null" >
+        IS_BIND = #{record.isBind,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitTime != null" >
+        LIMIT_TIME = #{record.limitTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allowEndPrio != null" >
+        ALLOW_END_PRIO = #{record.allowEndPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allowHollPrio != null" >
+        ALLOW_HOLL_PRIO = #{record.allowHollPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allowEndBid != null" >
+        ALLOW_END_BID = #{record.allowEndBid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCommission != null" >
+        IS_COMMISSION = #{record.isCommission,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comPercent != null" >
+        COM_PERCENT = #{record.comPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission != null" >
+        COMMISSION = #{record.commission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.incrementGroup != null" >
+        INCREMENT_GROUP = #{record.incrementGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incrementValue != null" >
+        INCREMENT_VALUE = #{record.incrementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessStatus != null" >
+        BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRPROCESS.SW_CAAE_PROJECT
+    set UUID = #{record.uuid,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      IMPORTANT_INFO = #{record.importantInfo,jdbcType=VARCHAR},
+      BUYER_POSTULATE = #{record.buyerPostulate,jdbcType=VARCHAR},
+      HAS_PRIORITY = #{record.hasPriority,jdbcType=VARCHAR},
+      PROPERTY = #{record.property,jdbcType=VARCHAR},
+      CATALOG = #{record.catalog,jdbcType=VARCHAR},
+      DESCRIPTION = #{record.description,jdbcType=VARCHAR},
+      TRANSFER_NOTES = #{record.transferNotes,jdbcType=VARCHAR},
+      IS_BIND = #{record.isBind,jdbcType=VARCHAR},
+      LIMIT_TIME = #{record.limitTime,jdbcType=DECIMAL},
+      ALLOW_END_PRIO = #{record.allowEndPrio,jdbcType=VARCHAR},
+      ALLOW_HOLL_PRIO = #{record.allowHollPrio,jdbcType=VARCHAR},
+      ALLOW_END_BID = #{record.allowEndBid,jdbcType=VARCHAR},
+      IS_COMMISSION = #{record.isCommission,jdbcType=VARCHAR},
+      COM_PERCENT = #{record.comPercent,jdbcType=DECIMAL},
+      COMMISSION = #{record.commission,jdbcType=DECIMAL},
+      INCREMENT_GROUP = #{record.incrementGroup,jdbcType=VARCHAR},
+      INCREMENT_VALUE = #{record.incrementValue,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity.SwCaaeProject" >
+    update PRPROCESS.SW_CAAE_PROJECT
+    <set >
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="importantInfo != null" >
+        IMPORTANT_INFO = #{importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPostulate != null" >
+        BUYER_POSTULATE = #{buyerPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="hasPriority != null" >
+        HAS_PRIORITY = #{hasPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        PROPERTY = #{property,jdbcType=VARCHAR},
+      </if>
+      <if test="catalog != null" >
+        CATALOG = #{catalog,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="transferNotes != null" >
+        TRANSFER_NOTES = #{transferNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="isBind != null" >
+        IS_BIND = #{isBind,jdbcType=VARCHAR},
+      </if>
+      <if test="limitTime != null" >
+        LIMIT_TIME = #{limitTime,jdbcType=DECIMAL},
+      </if>
+      <if test="allowEndPrio != null" >
+        ALLOW_END_PRIO = #{allowEndPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowHollPrio != null" >
+        ALLOW_HOLL_PRIO = #{allowHollPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowEndBid != null" >
+        ALLOW_END_BID = #{allowEndBid,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommission != null" >
+        IS_COMMISSION = #{isCommission,jdbcType=VARCHAR},
+      </if>
+      <if test="comPercent != null" >
+        COM_PERCENT = #{comPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        COMMISSION = #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="incrementGroup != null" >
+        INCREMENT_GROUP = #{incrementGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="incrementValue != null" >
+        INCREMENT_VALUE = #{incrementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity.SwCaaeProject" >
+    update PRPROCESS.SW_CAAE_PROJECT
+    set PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      IMPORTANT_INFO = #{importantInfo,jdbcType=VARCHAR},
+      BUYER_POSTULATE = #{buyerPostulate,jdbcType=VARCHAR},
+      HAS_PRIORITY = #{hasPriority,jdbcType=VARCHAR},
+      PROPERTY = #{property,jdbcType=VARCHAR},
+      CATALOG = #{catalog,jdbcType=VARCHAR},
+      DESCRIPTION = #{description,jdbcType=VARCHAR},
+      TRANSFER_NOTES = #{transferNotes,jdbcType=VARCHAR},
+      IS_BIND = #{isBind,jdbcType=VARCHAR},
+      LIMIT_TIME = #{limitTime,jdbcType=DECIMAL},
+      ALLOW_END_PRIO = #{allowEndPrio,jdbcType=VARCHAR},
+      ALLOW_HOLL_PRIO = #{allowHollPrio,jdbcType=VARCHAR},
+      ALLOW_END_BID = #{allowEndBid,jdbcType=VARCHAR},
+      IS_COMMISSION = #{isCommission,jdbcType=VARCHAR},
+      COM_PERCENT = #{comPercent,jdbcType=DECIMAL},
+      COMMISSION = #{commission,jdbcType=DECIMAL},
+      INCREMENT_GROUP = #{incrementGroup,jdbcType=VARCHAR},
+      INCREMENT_VALUE = #{incrementValue,jdbcType=VARCHAR},
+      PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

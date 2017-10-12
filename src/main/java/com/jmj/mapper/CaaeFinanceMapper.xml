@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao.CaaeFinanceMapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity.CaaeFinance" >
+    <id column="FINANCE_ID" property="financeId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="AUDIT_YEAR" property="auditYear" jdbcType="VARCHAR" />
+    <result column="AUDIT_UNIT" property="auditUnit" jdbcType="VARCHAR" />
+    <result column="AUDIT_ASSET" property="auditAsset" jdbcType="VARCHAR" />
+    <result column="AUDIT_EQUITY" property="auditEquity" jdbcType="VARCHAR" />
+    <result column="AUDIT_DEBT" property="auditDebt" jdbcType="VARCHAR" />
+    <result column="AUDIT_EARNING" property="auditEarning" jdbcType="VARCHAR" />
+    <result column="AUDIT_PROFIT" property="auditProfit" jdbcType="VARCHAR" />
+    <result column="AUDIT_NET_PROFIT" property="auditNetProfit" jdbcType="VARCHAR" />
+    <result column="STMT_DATE" property="stmtDate" jdbcType="TIMESTAMP" />
+    <result column="STMT_TYPE" property="stmtType" jdbcType="VARCHAR" />
+    <result column="STMT_ASSET" property="stmtAsset" jdbcType="DECIMAL" />
+    <result column="STMT_EQUITY" property="stmtEquity" jdbcType="DECIMAL" />
+    <result column="STMT_DEBT" property="stmtDebt" jdbcType="DECIMAL" />
+    <result column="STMT_EARNING" property="stmtEarning" jdbcType="DECIMAL" />
+    <result column="STMT_PROFIT" property="stmtProfit" jdbcType="DECIMAL" />
+    <result column="STMT_NET_PROFIT" property="stmtNetProfit" jdbcType="DECIMAL" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="BUSINESS_STATUS" property="businessStatus" jdbcType="VARCHAR" />
+    <result column="PROJECT_CLASSIFY_CODE" property="projectClassifyCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    FINANCE_ID, CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_NAME, 
+    PROJECT_TYPE, AUDIT_YEAR, AUDIT_UNIT, AUDIT_ASSET, AUDIT_EQUITY, AUDIT_DEBT, AUDIT_EARNING, 
+    AUDIT_PROFIT, AUDIT_NET_PROFIT, STMT_DATE, STMT_TYPE, STMT_ASSET, STMT_EQUITY, STMT_DEBT, 
+    STMT_EARNING, STMT_PROFIT, STMT_NET_PROFIT, PRO_TRANS_ID, PROJECT_ID, TRAD_INSTITUTION_ID, 
+    BUSINESS_STATUS, PROJECT_CLASSIFY_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity.CaaeFinanceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_FINANCE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_FINANCE
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRPROCESS.CAAE_FINANCE
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity.CaaeFinanceExample" >
+    delete from PRPROCESS.CAAE_FINANCE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity.CaaeFinance" >
+    insert into PRPROCESS.CAAE_FINANCE (FINANCE_ID, CREATE_TIME, LAST_UPDATE_TIME, 
+      PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_NAME, 
+      PROJECT_TYPE, AUDIT_YEAR, AUDIT_UNIT, 
+      AUDIT_ASSET, AUDIT_EQUITY, AUDIT_DEBT, 
+      AUDIT_EARNING, AUDIT_PROFIT, AUDIT_NET_PROFIT, 
+      STMT_DATE, STMT_TYPE, STMT_ASSET, 
+      STMT_EQUITY, STMT_DEBT, STMT_EARNING, 
+      STMT_PROFIT, STMT_NET_PROFIT, PRO_TRANS_ID, 
+      PROJECT_ID, TRAD_INSTITUTION_ID, BUSINESS_STATUS, 
+      PROJECT_CLASSIFY_CODE)
+    values (#{financeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{platformId,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}, #{tradInstitutionName,jdbcType=VARCHAR}, 
+      #{projectType,jdbcType=VARCHAR}, #{auditYear,jdbcType=VARCHAR}, #{auditUnit,jdbcType=VARCHAR}, 
+      #{auditAsset,jdbcType=VARCHAR}, #{auditEquity,jdbcType=VARCHAR}, #{auditDebt,jdbcType=VARCHAR}, 
+      #{auditEarning,jdbcType=VARCHAR}, #{auditProfit,jdbcType=VARCHAR}, #{auditNetProfit,jdbcType=VARCHAR}, 
+      #{stmtDate,jdbcType=TIMESTAMP}, #{stmtType,jdbcType=VARCHAR}, #{stmtAsset,jdbcType=DECIMAL}, 
+      #{stmtEquity,jdbcType=DECIMAL}, #{stmtDebt,jdbcType=DECIMAL}, #{stmtEarning,jdbcType=DECIMAL}, 
+      #{stmtProfit,jdbcType=DECIMAL}, #{stmtNetProfit,jdbcType=DECIMAL}, #{proTransId,jdbcType=VARCHAR}, 
+      #{projectId,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, #{businessStatus,jdbcType=VARCHAR}, 
+      #{projectClassifyCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity.CaaeFinance" >
+    insert into PRPROCESS.CAAE_FINANCE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="financeId != null" >
+        FINANCE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="auditYear != null" >
+        AUDIT_YEAR,
+      </if>
+      <if test="auditUnit != null" >
+        AUDIT_UNIT,
+      </if>
+      <if test="auditAsset != null" >
+        AUDIT_ASSET,
+      </if>
+      <if test="auditEquity != null" >
+        AUDIT_EQUITY,
+      </if>
+      <if test="auditDebt != null" >
+        AUDIT_DEBT,
+      </if>
+      <if test="auditEarning != null" >
+        AUDIT_EARNING,
+      </if>
+      <if test="auditProfit != null" >
+        AUDIT_PROFIT,
+      </if>
+      <if test="auditNetProfit != null" >
+        AUDIT_NET_PROFIT,
+      </if>
+      <if test="stmtDate != null" >
+        STMT_DATE,
+      </if>
+      <if test="stmtType != null" >
+        STMT_TYPE,
+      </if>
+      <if test="stmtAsset != null" >
+        STMT_ASSET,
+      </if>
+      <if test="stmtEquity != null" >
+        STMT_EQUITY,
+      </if>
+      <if test="stmtDebt != null" >
+        STMT_DEBT,
+      </if>
+      <if test="stmtEarning != null" >
+        STMT_EARNING,
+      </if>
+      <if test="stmtProfit != null" >
+        STMT_PROFIT,
+      </if>
+      <if test="stmtNetProfit != null" >
+        STMT_NET_PROFIT,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS,
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="financeId != null" >
+        #{financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="auditYear != null" >
+        #{auditYear,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUnit != null" >
+        #{auditUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="auditAsset != null" >
+        #{auditAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEquity != null" >
+        #{auditEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="auditDebt != null" >
+        #{auditDebt,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEarning != null" >
+        #{auditEarning,jdbcType=VARCHAR},
+      </if>
+      <if test="auditProfit != null" >
+        #{auditProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNetProfit != null" >
+        #{auditNetProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="stmtDate != null" >
+        #{stmtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stmtType != null" >
+        #{stmtType,jdbcType=VARCHAR},
+      </if>
+      <if test="stmtAsset != null" >
+        #{stmtAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtEquity != null" >
+        #{stmtEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtDebt != null" >
+        #{stmtDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtEarning != null" >
+        #{stmtEarning,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtProfit != null" >
+        #{stmtProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtNetProfit != null" >
+        #{stmtNetProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity.CaaeFinanceExample" resultType="java.lang.Integer" >
+    select count(*) from PRPROCESS.CAAE_FINANCE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRPROCESS.CAAE_FINANCE
+    <set >
+      <if test="record.financeId != null" >
+        FINANCE_ID = #{record.financeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditYear != null" >
+        AUDIT_YEAR = #{record.auditYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditUnit != null" >
+        AUDIT_UNIT = #{record.auditUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditAsset != null" >
+        AUDIT_ASSET = #{record.auditAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditEquity != null" >
+        AUDIT_EQUITY = #{record.auditEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditDebt != null" >
+        AUDIT_DEBT = #{record.auditDebt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditEarning != null" >
+        AUDIT_EARNING = #{record.auditEarning,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditProfit != null" >
+        AUDIT_PROFIT = #{record.auditProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditNetProfit != null" >
+        AUDIT_NET_PROFIT = #{record.auditNetProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stmtDate != null" >
+        STMT_DATE = #{record.stmtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.stmtType != null" >
+        STMT_TYPE = #{record.stmtType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stmtAsset != null" >
+        STMT_ASSET = #{record.stmtAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stmtEquity != null" >
+        STMT_EQUITY = #{record.stmtEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stmtDebt != null" >
+        STMT_DEBT = #{record.stmtDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stmtEarning != null" >
+        STMT_EARNING = #{record.stmtEarning,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stmtProfit != null" >
+        STMT_PROFIT = #{record.stmtProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stmtNetProfit != null" >
+        STMT_NET_PROFIT = #{record.stmtNetProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessStatus != null" >
+        BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRPROCESS.CAAE_FINANCE
+    set FINANCE_ID = #{record.financeId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      AUDIT_YEAR = #{record.auditYear,jdbcType=VARCHAR},
+      AUDIT_UNIT = #{record.auditUnit,jdbcType=VARCHAR},
+      AUDIT_ASSET = #{record.auditAsset,jdbcType=VARCHAR},
+      AUDIT_EQUITY = #{record.auditEquity,jdbcType=VARCHAR},
+      AUDIT_DEBT = #{record.auditDebt,jdbcType=VARCHAR},
+      AUDIT_EARNING = #{record.auditEarning,jdbcType=VARCHAR},
+      AUDIT_PROFIT = #{record.auditProfit,jdbcType=VARCHAR},
+      AUDIT_NET_PROFIT = #{record.auditNetProfit,jdbcType=VARCHAR},
+      STMT_DATE = #{record.stmtDate,jdbcType=TIMESTAMP},
+      STMT_TYPE = #{record.stmtType,jdbcType=VARCHAR},
+      STMT_ASSET = #{record.stmtAsset,jdbcType=DECIMAL},
+      STMT_EQUITY = #{record.stmtEquity,jdbcType=DECIMAL},
+      STMT_DEBT = #{record.stmtDebt,jdbcType=DECIMAL},
+      STMT_EARNING = #{record.stmtEarning,jdbcType=DECIMAL},
+      STMT_PROFIT = #{record.stmtProfit,jdbcType=DECIMAL},
+      STMT_NET_PROFIT = #{record.stmtNetProfit,jdbcType=DECIMAL},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity.CaaeFinance" >
+    update PRPROCESS.CAAE_FINANCE
+    <set >
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="auditYear != null" >
+        AUDIT_YEAR = #{auditYear,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUnit != null" >
+        AUDIT_UNIT = #{auditUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="auditAsset != null" >
+        AUDIT_ASSET = #{auditAsset,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEquity != null" >
+        AUDIT_EQUITY = #{auditEquity,jdbcType=VARCHAR},
+      </if>
+      <if test="auditDebt != null" >
+        AUDIT_DEBT = #{auditDebt,jdbcType=VARCHAR},
+      </if>
+      <if test="auditEarning != null" >
+        AUDIT_EARNING = #{auditEarning,jdbcType=VARCHAR},
+      </if>
+      <if test="auditProfit != null" >
+        AUDIT_PROFIT = #{auditProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="auditNetProfit != null" >
+        AUDIT_NET_PROFIT = #{auditNetProfit,jdbcType=VARCHAR},
+      </if>
+      <if test="stmtDate != null" >
+        STMT_DATE = #{stmtDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stmtType != null" >
+        STMT_TYPE = #{stmtType,jdbcType=VARCHAR},
+      </if>
+      <if test="stmtAsset != null" >
+        STMT_ASSET = #{stmtAsset,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtEquity != null" >
+        STMT_EQUITY = #{stmtEquity,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtDebt != null" >
+        STMT_DEBT = #{stmtDebt,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtEarning != null" >
+        STMT_EARNING = #{stmtEarning,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtProfit != null" >
+        STMT_PROFIT = #{stmtProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="stmtNetProfit != null" >
+        STMT_NET_PROFIT = #{stmtNetProfit,jdbcType=DECIMAL},
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity.CaaeFinance" >
+    update PRPROCESS.CAAE_FINANCE
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      AUDIT_YEAR = #{auditYear,jdbcType=VARCHAR},
+      AUDIT_UNIT = #{auditUnit,jdbcType=VARCHAR},
+      AUDIT_ASSET = #{auditAsset,jdbcType=VARCHAR},
+      AUDIT_EQUITY = #{auditEquity,jdbcType=VARCHAR},
+      AUDIT_DEBT = #{auditDebt,jdbcType=VARCHAR},
+      AUDIT_EARNING = #{auditEarning,jdbcType=VARCHAR},
+      AUDIT_PROFIT = #{auditProfit,jdbcType=VARCHAR},
+      AUDIT_NET_PROFIT = #{auditNetProfit,jdbcType=VARCHAR},
+      STMT_DATE = #{stmtDate,jdbcType=TIMESTAMP},
+      STMT_TYPE = #{stmtType,jdbcType=VARCHAR},
+      STMT_ASSET = #{stmtAsset,jdbcType=DECIMAL},
+      STMT_EQUITY = #{stmtEquity,jdbcType=DECIMAL},
+      STMT_DEBT = #{stmtDebt,jdbcType=DECIMAL},
+      STMT_EARNING = #{stmtEarning,jdbcType=DECIMAL},
+      STMT_PROFIT = #{stmtProfit,jdbcType=DECIMAL},
+      STMT_NET_PROFIT = #{stmtNetProfit,jdbcType=DECIMAL},
+      PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR}
+    where FINANCE_ID = #{financeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

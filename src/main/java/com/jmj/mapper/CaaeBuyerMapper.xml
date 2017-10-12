@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao.CaaeBuyerMapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity.CaaeBuyer" >
+    <id column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="BUYER_ID" property="buyerId" jdbcType="VARCHAR" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="BUYER_NAME" property="buyerName" jdbcType="VARCHAR" />
+    <result column="BUYER_PERCENT" property="buyerPercent" jdbcType="DECIMAL" />
+    <result column="BUYER_CODE" property="buyerCode" jdbcType="VARCHAR" />
+    <result column="BUYER_TYPE" property="buyerType" jdbcType="VARCHAR" />
+    <result column="ZONE" property="zone" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_CODE" property="industryCode" jdbcType="VARCHAR" />
+    <result column="MANAGER_SCALE" property="managerScale" jdbcType="VARCHAR" />
+    <result column="ECONOMY_TYPE" property="economyType" jdbcType="VARCHAR" />
+    <result column="ECONOMY_NATURE" property="economyNature" jdbcType="VARCHAR" />
+    <result column="BUSINESS_SCOPE" property="businessScope" jdbcType="VARCHAR" />
+    <result column="REGISTERED_CAPITAL" property="registeredCapital" jdbcType="VARCHAR" />
+    <result column="BUYER_PHONE" property="buyerPhone" jdbcType="VARCHAR" />
+    <result column="BUYER_ADDRESS" property="buyerAddress" jdbcType="VARCHAR" />
+    <result column="BUYER_EMAIL" property="buyerEmail" jdbcType="VARCHAR" />
+    <result column="IS_UNION" property="isUnion" jdbcType="VARCHAR" />
+    <result column="BUYER_BROKER" property="buyerBroker" jdbcType="VARCHAR" />
+    <result column="WANT_BUY_PERCENT" property="wantBuyPercent" jdbcType="DECIMAL" />
+    <result column="FINAL_BUY_PERCENT" property="finalBuyPercent" jdbcType="DECIMAL" />
+    <result column="HAS_PRIORITY" property="hasPriority" jdbcType="VARCHAR" />
+    <result column="INVEST_PERCENT" property="investPercent" jdbcType="VARCHAR" />
+    <result column="INVEST_AMOUNT" property="investAmount" jdbcType="VARCHAR" />
+    <result column="INVEST_PRICE" property="investPrice" jdbcType="VARCHAR" />
+    <result column="INVEST_REMARK" property="investRemark" jdbcType="VARCHAR" />
+    <result column="IS_MANAGER_LAYER" property="isManagerLayer" jdbcType="VARCHAR" />
+    <result column="BUYER_ROLE" property="buyerRole" jdbcType="VARCHAR" />
+    <result column="REGISTER_DATE" property="registerDate" jdbcType="TIMESTAMP" />
+    <result column="ACCEPT_RESULT" property="acceptResult" jdbcType="VARCHAR" />
+    <result column="ACCEPT_DATE" property="acceptDate" jdbcType="TIMESTAMP" />
+    <result column="NO_ACCEPT_REASON" property="noAcceptReason" jdbcType="VARCHAR" />
+    <result column="CONFIRM_RESULT" property="confirmResult" jdbcType="VARCHAR" />
+    <result column="CONFIRM_DATE" property="confirmDate" jdbcType="TIMESTAMP" />
+    <result column="NO_CONFIRM_REASON" property="noConfirmReason" jdbcType="VARCHAR" />
+    <result column="QUIT_DATE" property="quitDate" jdbcType="TIMESTAMP" />
+    <result column="QUIT_REASON" property="quitReason" jdbcType="VARCHAR" />
+    <result column="DUTY" property="duty" jdbcType="VARCHAR" />
+    <result column="HAS_AUDIT" property="hasAudit" jdbcType="VARCHAR" />
+    <result column="EXAMIN_RESULT" property="examinResult" jdbcType="VARCHAR" />
+    <result column="EXAMIN_DATE" property="examinDate" jdbcType="TIMESTAMP" />
+    <result column="NO_EXAMIN_REASON" property="noExaminReason" jdbcType="VARCHAR" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="BUSINESS_STATUS" property="businessStatus" jdbcType="VARCHAR" />
+    <result column="PROJECT_CLASSIFY_CODE" property="projectClassifyCode" jdbcType="VARCHAR" />
+    <result column="BUYER_UNIT_ID" property="buyerUnitId" jdbcType="VARCHAR" />
+    <result column="TOTAL_STOCK_CAPITAL" property="totalStockCapital" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UUID, BUYER_ID, PRO_TRANS_ID, CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, PLATFORM_NAME, 
+    TRAD_INSTITUTION_NAME, PROJECT_TYPE, BUYER_NAME, BUYER_PERCENT, BUYER_CODE, BUYER_TYPE, 
+    ZONE, INDUSTRY_CODE, MANAGER_SCALE, ECONOMY_TYPE, ECONOMY_NATURE, BUSINESS_SCOPE, 
+    REGISTERED_CAPITAL, BUYER_PHONE, BUYER_ADDRESS, BUYER_EMAIL, IS_UNION, BUYER_BROKER, 
+    WANT_BUY_PERCENT, FINAL_BUY_PERCENT, HAS_PRIORITY, INVEST_PERCENT, INVEST_AMOUNT, 
+    INVEST_PRICE, INVEST_REMARK, IS_MANAGER_LAYER, BUYER_ROLE, REGISTER_DATE, ACCEPT_RESULT, 
+    ACCEPT_DATE, NO_ACCEPT_REASON, CONFIRM_RESULT, CONFIRM_DATE, NO_CONFIRM_REASON, QUIT_DATE, 
+    QUIT_REASON, DUTY, HAS_AUDIT, EXAMIN_RESULT, EXAMIN_DATE, NO_EXAMIN_REASON, PROJECT_ID, 
+    TRAD_INSTITUTION_ID, BUSINESS_STATUS, PROJECT_CLASSIFY_CODE, BUYER_UNIT_ID, TOTAL_STOCK_CAPITAL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity.CaaeBuyerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_BUYER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_BUYER
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRPROCESS.CAAE_BUYER
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity.CaaeBuyerExample" >
+    delete from PRPROCESS.CAAE_BUYER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity.CaaeBuyer" >
+    insert into PRPROCESS.CAAE_BUYER (UUID, BUYER_ID, PRO_TRANS_ID, 
+      CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, 
+      PLATFORM_NAME, TRAD_INSTITUTION_NAME, PROJECT_TYPE, 
+      BUYER_NAME, BUYER_PERCENT, BUYER_CODE, 
+      BUYER_TYPE, ZONE, INDUSTRY_CODE, 
+      MANAGER_SCALE, ECONOMY_TYPE, ECONOMY_NATURE, 
+      BUSINESS_SCOPE, REGISTERED_CAPITAL, BUYER_PHONE, 
+      BUYER_ADDRESS, BUYER_EMAIL, IS_UNION, 
+      BUYER_BROKER, WANT_BUY_PERCENT, FINAL_BUY_PERCENT, 
+      HAS_PRIORITY, INVEST_PERCENT, INVEST_AMOUNT, 
+      INVEST_PRICE, INVEST_REMARK, IS_MANAGER_LAYER, 
+      BUYER_ROLE, REGISTER_DATE, ACCEPT_RESULT, 
+      ACCEPT_DATE, NO_ACCEPT_REASON, CONFIRM_RESULT, 
+      CONFIRM_DATE, NO_CONFIRM_REASON, QUIT_DATE, 
+      QUIT_REASON, DUTY, HAS_AUDIT, 
+      EXAMIN_RESULT, EXAMIN_DATE, NO_EXAMIN_REASON, 
+      PROJECT_ID, TRAD_INSTITUTION_ID, BUSINESS_STATUS, 
+      PROJECT_CLASSIFY_CODE, BUYER_UNIT_ID, TOTAL_STOCK_CAPITAL
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{buyerId,jdbcType=VARCHAR}, #{proTransId,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, #{platformId,jdbcType=VARCHAR}, 
+      #{platformName,jdbcType=VARCHAR}, #{tradInstitutionName,jdbcType=VARCHAR}, #{projectType,jdbcType=VARCHAR}, 
+      #{buyerName,jdbcType=VARCHAR}, #{buyerPercent,jdbcType=DECIMAL}, #{buyerCode,jdbcType=VARCHAR}, 
+      #{buyerType,jdbcType=VARCHAR}, #{zone,jdbcType=VARCHAR}, #{industryCode,jdbcType=VARCHAR}, 
+      #{managerScale,jdbcType=VARCHAR}, #{economyType,jdbcType=VARCHAR}, #{economyNature,jdbcType=VARCHAR}, 
+      #{businessScope,jdbcType=VARCHAR}, #{registeredCapital,jdbcType=VARCHAR}, #{buyerPhone,jdbcType=VARCHAR}, 
+      #{buyerAddress,jdbcType=VARCHAR}, #{buyerEmail,jdbcType=VARCHAR}, #{isUnion,jdbcType=VARCHAR}, 
+      #{buyerBroker,jdbcType=VARCHAR}, #{wantBuyPercent,jdbcType=DECIMAL}, #{finalBuyPercent,jdbcType=DECIMAL}, 
+      #{hasPriority,jdbcType=VARCHAR}, #{investPercent,jdbcType=VARCHAR}, #{investAmount,jdbcType=VARCHAR}, 
+      #{investPrice,jdbcType=VARCHAR}, #{investRemark,jdbcType=VARCHAR}, #{isManagerLayer,jdbcType=VARCHAR}, 
+      #{buyerRole,jdbcType=VARCHAR}, #{registerDate,jdbcType=TIMESTAMP}, #{acceptResult,jdbcType=VARCHAR}, 
+      #{acceptDate,jdbcType=TIMESTAMP}, #{noAcceptReason,jdbcType=VARCHAR}, #{confirmResult,jdbcType=VARCHAR}, 
+      #{confirmDate,jdbcType=TIMESTAMP}, #{noConfirmReason,jdbcType=VARCHAR}, #{quitDate,jdbcType=TIMESTAMP}, 
+      #{quitReason,jdbcType=VARCHAR}, #{duty,jdbcType=VARCHAR}, #{hasAudit,jdbcType=VARCHAR}, 
+      #{examinResult,jdbcType=VARCHAR}, #{examinDate,jdbcType=TIMESTAMP}, #{noExaminReason,jdbcType=VARCHAR}, 
+      #{projectId,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, #{businessStatus,jdbcType=VARCHAR}, 
+      #{projectClassifyCode,jdbcType=VARCHAR}, #{buyerUnitId,jdbcType=VARCHAR}, #{totalStockCapital,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity.CaaeBuyer" >
+    insert into PRPROCESS.CAAE_BUYER
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="buyerId != null" >
+        BUYER_ID,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME,
+      </if>
+      <if test="buyerPercent != null" >
+        BUYER_PERCENT,
+      </if>
+      <if test="buyerCode != null" >
+        BUYER_CODE,
+      </if>
+      <if test="buyerType != null" >
+        BUYER_TYPE,
+      </if>
+      <if test="zone != null" >
+        ZONE,
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE,
+      </if>
+      <if test="managerScale != null" >
+        MANAGER_SCALE,
+      </if>
+      <if test="economyType != null" >
+        ECONOMY_TYPE,
+      </if>
+      <if test="economyNature != null" >
+        ECONOMY_NATURE,
+      </if>
+      <if test="businessScope != null" >
+        BUSINESS_SCOPE,
+      </if>
+      <if test="registeredCapital != null" >
+        REGISTERED_CAPITAL,
+      </if>
+      <if test="buyerPhone != null" >
+        BUYER_PHONE,
+      </if>
+      <if test="buyerAddress != null" >
+        BUYER_ADDRESS,
+      </if>
+      <if test="buyerEmail != null" >
+        BUYER_EMAIL,
+      </if>
+      <if test="isUnion != null" >
+        IS_UNION,
+      </if>
+      <if test="buyerBroker != null" >
+        BUYER_BROKER,
+      </if>
+      <if test="wantBuyPercent != null" >
+        WANT_BUY_PERCENT,
+      </if>
+      <if test="finalBuyPercent != null" >
+        FINAL_BUY_PERCENT,
+      </if>
+      <if test="hasPriority != null" >
+        HAS_PRIORITY,
+      </if>
+      <if test="investPercent != null" >
+        INVEST_PERCENT,
+      </if>
+      <if test="investAmount != null" >
+        INVEST_AMOUNT,
+      </if>
+      <if test="investPrice != null" >
+        INVEST_PRICE,
+      </if>
+      <if test="investRemark != null" >
+        INVEST_REMARK,
+      </if>
+      <if test="isManagerLayer != null" >
+        IS_MANAGER_LAYER,
+      </if>
+      <if test="buyerRole != null" >
+        BUYER_ROLE,
+      </if>
+      <if test="registerDate != null" >
+        REGISTER_DATE,
+      </if>
+      <if test="acceptResult != null" >
+        ACCEPT_RESULT,
+      </if>
+      <if test="acceptDate != null" >
+        ACCEPT_DATE,
+      </if>
+      <if test="noAcceptReason != null" >
+        NO_ACCEPT_REASON,
+      </if>
+      <if test="confirmResult != null" >
+        CONFIRM_RESULT,
+      </if>
+      <if test="confirmDate != null" >
+        CONFIRM_DATE,
+      </if>
+      <if test="noConfirmReason != null" >
+        NO_CONFIRM_REASON,
+      </if>
+      <if test="quitDate != null" >
+        QUIT_DATE,
+      </if>
+      <if test="quitReason != null" >
+        QUIT_REASON,
+      </if>
+      <if test="duty != null" >
+        DUTY,
+      </if>
+      <if test="hasAudit != null" >
+        HAS_AUDIT,
+      </if>
+      <if test="examinResult != null" >
+        EXAMIN_RESULT,
+      </if>
+      <if test="examinDate != null" >
+        EXAMIN_DATE,
+      </if>
+      <if test="noExaminReason != null" >
+        NO_EXAMIN_REASON,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS,
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE,
+      </if>
+      <if test="buyerUnitId != null" >
+        BUYER_UNIT_ID,
+      </if>
+      <if test="totalStockCapital != null" >
+        TOTAL_STOCK_CAPITAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPercent != null" >
+        #{buyerPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="buyerCode != null" >
+        #{buyerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerType != null" >
+        #{buyerType,jdbcType=VARCHAR},
+      </if>
+      <if test="zone != null" >
+        #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="managerScale != null" >
+        #{managerScale,jdbcType=VARCHAR},
+      </if>
+      <if test="economyType != null" >
+        #{economyType,jdbcType=VARCHAR},
+      </if>
+      <if test="economyNature != null" >
+        #{economyNature,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        #{registeredCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null" >
+        #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null" >
+        #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null" >
+        #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnion != null" >
+        #{isUnion,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerBroker != null" >
+        #{buyerBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="wantBuyPercent != null" >
+        #{wantBuyPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="finalBuyPercent != null" >
+        #{finalBuyPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="hasPriority != null" >
+        #{hasPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="investPercent != null" >
+        #{investPercent,jdbcType=VARCHAR},
+      </if>
+      <if test="investAmount != null" >
+        #{investAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="investPrice != null" >
+        #{investPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="investRemark != null" >
+        #{investRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isManagerLayer != null" >
+        #{isManagerLayer,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerRole != null" >
+        #{buyerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acceptResult != null" >
+        #{acceptResult,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null" >
+        #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noAcceptReason != null" >
+        #{noAcceptReason,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmResult != null" >
+        #{confirmResult,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmDate != null" >
+        #{confirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noConfirmReason != null" >
+        #{noConfirmReason,jdbcType=VARCHAR},
+      </if>
+      <if test="quitDate != null" >
+        #{quitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quitReason != null" >
+        #{quitReason,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAudit != null" >
+        #{hasAudit,jdbcType=VARCHAR},
+      </if>
+      <if test="examinResult != null" >
+        #{examinResult,jdbcType=VARCHAR},
+      </if>
+      <if test="examinDate != null" >
+        #{examinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noExaminReason != null" >
+        #{noExaminReason,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerUnitId != null" >
+        #{buyerUnitId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStockCapital != null" >
+        #{totalStockCapital,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity.CaaeBuyerExample" resultType="java.lang.Integer" >
+    select count(*) from PRPROCESS.CAAE_BUYER
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRPROCESS.CAAE_BUYER
+    <set >
+      <if test="record.uuid != null" >
+        UUID = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerId != null" >
+        BUYER_ID = #{record.buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerName != null" >
+        BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerPercent != null" >
+        BUYER_PERCENT = #{record.buyerPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.buyerCode != null" >
+        BUYER_CODE = #{record.buyerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerType != null" >
+        BUYER_TYPE = #{record.buyerType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zone != null" >
+        ZONE = #{record.zone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryCode != null" >
+        INDUSTRY_CODE = #{record.industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerScale != null" >
+        MANAGER_SCALE = #{record.managerScale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economyType != null" >
+        ECONOMY_TYPE = #{record.economyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.economyNature != null" >
+        ECONOMY_NATURE = #{record.economyNature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessScope != null" >
+        BUSINESS_SCOPE = #{record.businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registeredCapital != null" >
+        REGISTERED_CAPITAL = #{record.registeredCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerPhone != null" >
+        BUYER_PHONE = #{record.buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerAddress != null" >
+        BUYER_ADDRESS = #{record.buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerEmail != null" >
+        BUYER_EMAIL = #{record.buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUnion != null" >
+        IS_UNION = #{record.isUnion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerBroker != null" >
+        BUYER_BROKER = #{record.buyerBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wantBuyPercent != null" >
+        WANT_BUY_PERCENT = #{record.wantBuyPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.finalBuyPercent != null" >
+        FINAL_BUY_PERCENT = #{record.finalBuyPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.hasPriority != null" >
+        HAS_PRIORITY = #{record.hasPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investPercent != null" >
+        INVEST_PERCENT = #{record.investPercent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investAmount != null" >
+        INVEST_AMOUNT = #{record.investAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investPrice != null" >
+        INVEST_PRICE = #{record.investPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investRemark != null" >
+        INVEST_REMARK = #{record.investRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isManagerLayer != null" >
+        IS_MANAGER_LAYER = #{record.isManagerLayer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerRole != null" >
+        BUYER_ROLE = #{record.buyerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="record.registerDate != null" >
+        REGISTER_DATE = #{record.registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.acceptResult != null" >
+        ACCEPT_RESULT = #{record.acceptResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acceptDate != null" >
+        ACCEPT_DATE = #{record.acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.noAcceptReason != null" >
+        NO_ACCEPT_REASON = #{record.noAcceptReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmResult != null" >
+        CONFIRM_RESULT = #{record.confirmResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.confirmDate != null" >
+        CONFIRM_DATE = #{record.confirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.noConfirmReason != null" >
+        NO_CONFIRM_REASON = #{record.noConfirmReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quitDate != null" >
+        QUIT_DATE = #{record.quitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.quitReason != null" >
+        QUIT_REASON = #{record.quitReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.duty != null" >
+        DUTY = #{record.duty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasAudit != null" >
+        HAS_AUDIT = #{record.hasAudit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examinResult != null" >
+        EXAMIN_RESULT = #{record.examinResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examinDate != null" >
+        EXAMIN_DATE = #{record.examinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.noExaminReason != null" >
+        NO_EXAMIN_REASON = #{record.noExaminReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessStatus != null" >
+        BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerUnitId != null" >
+        BUYER_UNIT_ID = #{record.buyerUnitId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalStockCapital != null" >
+        TOTAL_STOCK_CAPITAL = #{record.totalStockCapital,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRPROCESS.CAAE_BUYER
+    set UUID = #{record.uuid,jdbcType=VARCHAR},
+      BUYER_ID = #{record.buyerId,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      BUYER_PERCENT = #{record.buyerPercent,jdbcType=DECIMAL},
+      BUYER_CODE = #{record.buyerCode,jdbcType=VARCHAR},
+      BUYER_TYPE = #{record.buyerType,jdbcType=VARCHAR},
+      ZONE = #{record.zone,jdbcType=VARCHAR},
+      INDUSTRY_CODE = #{record.industryCode,jdbcType=VARCHAR},
+      MANAGER_SCALE = #{record.managerScale,jdbcType=VARCHAR},
+      ECONOMY_TYPE = #{record.economyType,jdbcType=VARCHAR},
+      ECONOMY_NATURE = #{record.economyNature,jdbcType=VARCHAR},
+      BUSINESS_SCOPE = #{record.businessScope,jdbcType=VARCHAR},
+      REGISTERED_CAPITAL = #{record.registeredCapital,jdbcType=VARCHAR},
+      BUYER_PHONE = #{record.buyerPhone,jdbcType=VARCHAR},
+      BUYER_ADDRESS = #{record.buyerAddress,jdbcType=VARCHAR},
+      BUYER_EMAIL = #{record.buyerEmail,jdbcType=VARCHAR},
+      IS_UNION = #{record.isUnion,jdbcType=VARCHAR},
+      BUYER_BROKER = #{record.buyerBroker,jdbcType=VARCHAR},
+      WANT_BUY_PERCENT = #{record.wantBuyPercent,jdbcType=DECIMAL},
+      FINAL_BUY_PERCENT = #{record.finalBuyPercent,jdbcType=DECIMAL},
+      HAS_PRIORITY = #{record.hasPriority,jdbcType=VARCHAR},
+      INVEST_PERCENT = #{record.investPercent,jdbcType=VARCHAR},
+      INVEST_AMOUNT = #{record.investAmount,jdbcType=VARCHAR},
+      INVEST_PRICE = #{record.investPrice,jdbcType=VARCHAR},
+      INVEST_REMARK = #{record.investRemark,jdbcType=VARCHAR},
+      IS_MANAGER_LAYER = #{record.isManagerLayer,jdbcType=VARCHAR},
+      BUYER_ROLE = #{record.buyerRole,jdbcType=VARCHAR},
+      REGISTER_DATE = #{record.registerDate,jdbcType=TIMESTAMP},
+      ACCEPT_RESULT = #{record.acceptResult,jdbcType=VARCHAR},
+      ACCEPT_DATE = #{record.acceptDate,jdbcType=TIMESTAMP},
+      NO_ACCEPT_REASON = #{record.noAcceptReason,jdbcType=VARCHAR},
+      CONFIRM_RESULT = #{record.confirmResult,jdbcType=VARCHAR},
+      CONFIRM_DATE = #{record.confirmDate,jdbcType=TIMESTAMP},
+      NO_CONFIRM_REASON = #{record.noConfirmReason,jdbcType=VARCHAR},
+      QUIT_DATE = #{record.quitDate,jdbcType=TIMESTAMP},
+      QUIT_REASON = #{record.quitReason,jdbcType=VARCHAR},
+      DUTY = #{record.duty,jdbcType=VARCHAR},
+      HAS_AUDIT = #{record.hasAudit,jdbcType=VARCHAR},
+      EXAMIN_RESULT = #{record.examinResult,jdbcType=VARCHAR},
+      EXAMIN_DATE = #{record.examinDate,jdbcType=TIMESTAMP},
+      NO_EXAMIN_REASON = #{record.noExaminReason,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      BUYER_UNIT_ID = #{record.buyerUnitId,jdbcType=VARCHAR},
+      TOTAL_STOCK_CAPITAL = #{record.totalStockCapital,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity.CaaeBuyer" >
+    update PRPROCESS.CAAE_BUYER
+    <set >
+      <if test="buyerId != null" >
+        BUYER_ID = #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPercent != null" >
+        BUYER_PERCENT = #{buyerPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="buyerCode != null" >
+        BUYER_CODE = #{buyerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerType != null" >
+        BUYER_TYPE = #{buyerType,jdbcType=VARCHAR},
+      </if>
+      <if test="zone != null" >
+        ZONE = #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="managerScale != null" >
+        MANAGER_SCALE = #{managerScale,jdbcType=VARCHAR},
+      </if>
+      <if test="economyType != null" >
+        ECONOMY_TYPE = #{economyType,jdbcType=VARCHAR},
+      </if>
+      <if test="economyNature != null" >
+        ECONOMY_NATURE = #{economyNature,jdbcType=VARCHAR},
+      </if>
+      <if test="businessScope != null" >
+        BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredCapital != null" >
+        REGISTERED_CAPITAL = #{registeredCapital,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPhone != null" >
+        BUYER_PHONE = #{buyerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAddress != null" >
+        BUYER_ADDRESS = #{buyerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerEmail != null" >
+        BUYER_EMAIL = #{buyerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="isUnion != null" >
+        IS_UNION = #{isUnion,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerBroker != null" >
+        BUYER_BROKER = #{buyerBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="wantBuyPercent != null" >
+        WANT_BUY_PERCENT = #{wantBuyPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="finalBuyPercent != null" >
+        FINAL_BUY_PERCENT = #{finalBuyPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="hasPriority != null" >
+        HAS_PRIORITY = #{hasPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="investPercent != null" >
+        INVEST_PERCENT = #{investPercent,jdbcType=VARCHAR},
+      </if>
+      <if test="investAmount != null" >
+        INVEST_AMOUNT = #{investAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="investPrice != null" >
+        INVEST_PRICE = #{investPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="investRemark != null" >
+        INVEST_REMARK = #{investRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="isManagerLayer != null" >
+        IS_MANAGER_LAYER = #{isManagerLayer,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerRole != null" >
+        BUYER_ROLE = #{buyerRole,jdbcType=VARCHAR},
+      </if>
+      <if test="registerDate != null" >
+        REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="acceptResult != null" >
+        ACCEPT_RESULT = #{acceptResult,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptDate != null" >
+        ACCEPT_DATE = #{acceptDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noAcceptReason != null" >
+        NO_ACCEPT_REASON = #{noAcceptReason,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmResult != null" >
+        CONFIRM_RESULT = #{confirmResult,jdbcType=VARCHAR},
+      </if>
+      <if test="confirmDate != null" >
+        CONFIRM_DATE = #{confirmDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noConfirmReason != null" >
+        NO_CONFIRM_REASON = #{noConfirmReason,jdbcType=VARCHAR},
+      </if>
+      <if test="quitDate != null" >
+        QUIT_DATE = #{quitDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="quitReason != null" >
+        QUIT_REASON = #{quitReason,jdbcType=VARCHAR},
+      </if>
+      <if test="duty != null" >
+        DUTY = #{duty,jdbcType=VARCHAR},
+      </if>
+      <if test="hasAudit != null" >
+        HAS_AUDIT = #{hasAudit,jdbcType=VARCHAR},
+      </if>
+      <if test="examinResult != null" >
+        EXAMIN_RESULT = #{examinResult,jdbcType=VARCHAR},
+      </if>
+      <if test="examinDate != null" >
+        EXAMIN_DATE = #{examinDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noExaminReason != null" >
+        NO_EXAMIN_REASON = #{noExaminReason,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerUnitId != null" >
+        BUYER_UNIT_ID = #{buyerUnitId,jdbcType=VARCHAR},
+      </if>
+      <if test="totalStockCapital != null" >
+        TOTAL_STOCK_CAPITAL = #{totalStockCapital,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity.CaaeBuyer" >
+    update PRPROCESS.CAAE_BUYER
+    set BUYER_ID = #{buyerId,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      BUYER_PERCENT = #{buyerPercent,jdbcType=DECIMAL},
+      BUYER_CODE = #{buyerCode,jdbcType=VARCHAR},
+      BUYER_TYPE = #{buyerType,jdbcType=VARCHAR},
+      ZONE = #{zone,jdbcType=VARCHAR},
+      INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      MANAGER_SCALE = #{managerScale,jdbcType=VARCHAR},
+      ECONOMY_TYPE = #{economyType,jdbcType=VARCHAR},
+      ECONOMY_NATURE = #{economyNature,jdbcType=VARCHAR},
+      BUSINESS_SCOPE = #{businessScope,jdbcType=VARCHAR},
+      REGISTERED_CAPITAL = #{registeredCapital,jdbcType=VARCHAR},
+      BUYER_PHONE = #{buyerPhone,jdbcType=VARCHAR},
+      BUYER_ADDRESS = #{buyerAddress,jdbcType=VARCHAR},
+      BUYER_EMAIL = #{buyerEmail,jdbcType=VARCHAR},
+      IS_UNION = #{isUnion,jdbcType=VARCHAR},
+      BUYER_BROKER = #{buyerBroker,jdbcType=VARCHAR},
+      WANT_BUY_PERCENT = #{wantBuyPercent,jdbcType=DECIMAL},
+      FINAL_BUY_PERCENT = #{finalBuyPercent,jdbcType=DECIMAL},
+      HAS_PRIORITY = #{hasPriority,jdbcType=VARCHAR},
+      INVEST_PERCENT = #{investPercent,jdbcType=VARCHAR},
+      INVEST_AMOUNT = #{investAmount,jdbcType=VARCHAR},
+      INVEST_PRICE = #{investPrice,jdbcType=VARCHAR},
+      INVEST_REMARK = #{investRemark,jdbcType=VARCHAR},
+      IS_MANAGER_LAYER = #{isManagerLayer,jdbcType=VARCHAR},
+      BUYER_ROLE = #{buyerRole,jdbcType=VARCHAR},
+      REGISTER_DATE = #{registerDate,jdbcType=TIMESTAMP},
+      ACCEPT_RESULT = #{acceptResult,jdbcType=VARCHAR},
+      ACCEPT_DATE = #{acceptDate,jdbcType=TIMESTAMP},
+      NO_ACCEPT_REASON = #{noAcceptReason,jdbcType=VARCHAR},
+      CONFIRM_RESULT = #{confirmResult,jdbcType=VARCHAR},
+      CONFIRM_DATE = #{confirmDate,jdbcType=TIMESTAMP},
+      NO_CONFIRM_REASON = #{noConfirmReason,jdbcType=VARCHAR},
+      QUIT_DATE = #{quitDate,jdbcType=TIMESTAMP},
+      QUIT_REASON = #{quitReason,jdbcType=VARCHAR},
+      DUTY = #{duty,jdbcType=VARCHAR},
+      HAS_AUDIT = #{hasAudit,jdbcType=VARCHAR},
+      EXAMIN_RESULT = #{examinResult,jdbcType=VARCHAR},
+      EXAMIN_DATE = #{examinDate,jdbcType=TIMESTAMP},
+      NO_EXAMIN_REASON = #{noExaminReason,jdbcType=VARCHAR},
+      PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      BUYER_UNIT_ID = #{buyerUnitId,jdbcType=VARCHAR},
+      TOTAL_STOCK_CAPITAL = #{totalStockCapital,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

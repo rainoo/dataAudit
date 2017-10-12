@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao.CaaeProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity.CaaeProject" >
+    <id column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE" property="lastUpdate" jdbcType="TIMESTAMP" />
+    <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR" />
+    <result column="PROJECT_CODE" property="projectCode" jdbcType="VARCHAR" />
+    <result column="BUSINESS_STATUS" property="businessStatus" jdbcType="VARCHAR" />
+    <result column="PROJECT_CLASSIFY_CODE" property="projectClassifyCode" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="PROJECT_PRICE" property="projectPrice" jdbcType="DECIMAL" />
+    <result column="TOTAL_PERCENT" property="totalPercent" jdbcType="DECIMAL" />
+    <result column="PRO_PRICE_EXPLAIN" property="proPriceExplain" jdbcType="VARCHAR" />
+    <result column="TOTAL_PERCENT_EXPLAIN" property="totalPercentExplain" jdbcType="VARCHAR" />
+    <result column="PUBLISH_DATE" property="publishDate" jdbcType="TIMESTAMP" />
+    <result column="PUBLISH_DURATION" property="publishDuration" jdbcType="DECIMAL" />
+    <result column="EXPIRE_DATE" property="expireDate" jdbcType="TIMESTAMP" />
+    <result column="PRE_EXCHANGE_TYPE" property="preExchangeType" jdbcType="VARCHAR" />
+    <result column="SELECT_DATE" property="selectDate" jdbcType="TIMESTAMP" />
+    <result column="ZONE" property="zone" jdbcType="VARCHAR" />
+    <result column="INDUSTRY_CODE" property="industryCode" jdbcType="VARCHAR" />
+    <result column="WEB_BID_DATE_START" property="webBidDateStart" jdbcType="TIMESTAMP" />
+    <result column="WEB_BID_DATE_END" property="webBidDateEnd" jdbcType="TIMESTAMP" />
+    <result column="IS_DEPOSIT" property="isDeposit" jdbcType="VARCHAR" />
+    <result column="DEPOSIT" property="deposit" jdbcType="DECIMAL" />
+    <result column="DEPOSIT_DATE" property="depositDate" jdbcType="TIMESTAMP" />
+    <result column="DEPOSIT_DATE_END" property="depositDateEnd" jdbcType="TIMESTAMP" />
+    <result column="PROCONTACT" property="procontact" jdbcType="VARCHAR" />
+    <result column="PROCONTACT_MOBILE" property="procontactMobile" jdbcType="VARCHAR" />
+    <result column="PROCONTACT_EMAIL" property="procontactEmail" jdbcType="VARCHAR" />
+    <result column="DEPTCONTACT" property="deptcontact" jdbcType="VARCHAR" />
+    <result column="DEPTCONTACT_MOBILE" property="deptcontactMobile" jdbcType="VARCHAR" />
+    <result column="MEMBER_ORG" property="memberOrg" jdbcType="VARCHAR" />
+    <result column="MEMBER_BROKER" property="memberBroker" jdbcType="VARCHAR" />
+    <result column="MEMBER_MOBILE" property="memberMobile" jdbcType="VARCHAR" />
+    <result column="MEMBER_EMAIL" property="memberEmail" jdbcType="VARCHAR" />
+    <result column="PROJECT_URL" property="projectUrl" jdbcType="VARCHAR" />
+    <result column="WEB_BID_URL" property="webBidUrl" jdbcType="VARCHAR" />
+    <result column="TERMINATE_DATE" property="terminateDate" jdbcType="TIMESTAMP" />
+    <result column="TERMINATE_REASON" property="terminateReason" jdbcType="VARCHAR" />
+    <result column="PAUSE_DATE" property="pauseDate" jdbcType="TIMESTAMP" />
+    <result column="PAUSE_REASON" property="pauseReason" jdbcType="VARCHAR" />
+    <result column="RESUME_DATE" property="resumeDate" jdbcType="TIMESTAMP" />
+    <result column="UNIFIED_DEAL_CODE" property="unifiedDealCode" jdbcType="VARCHAR" />
+    <result column="POST_PONE" property="postPone" jdbcType="VARCHAR" />
+    <result column="PLATFORM_CODE" property="platformCode" jdbcType="VARCHAR" />
+    <result column="PUB_SERVICE_PLAT_CODE" property="pubServicePlatCode" jdbcType="VARCHAR" />
+    <result column="DATA_TIMESTAMP" property="dataTimestamp" jdbcType="TIMESTAMP" />
+    <result column="EXCEPTION_STATUS" property="exceptionStatus" jdbcType="VARCHAR" />
+    <result column="IS_GZ" property="isGz" jdbcType="VARCHAR" />
+    <result column="IMG_URL" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="MAN_POSTPONE_REASON" property="manPostponeReason" jdbcType="VARCHAR" />
+    <result column="PICK_DATE" property="pickDate" jdbcType="TIMESTAMP" />
+    <result column="EXPIRE_TYPE" property="expireType" jdbcType="VARCHAR" />
+    <result column="EXPIRE_CONDITION" property="expireCondition" jdbcType="VARCHAR" />
+    <result column="POSTPONE_CYCLE" property="postponeCycle" jdbcType="DECIMAL" />
+    <result column="REPORT_STATUS" property="reportStatus" jdbcType="VARCHAR" />
+    <result column="REPORT_TIME" property="reportTime" jdbcType="TIMESTAMP" />
+    <result column="SENSITIVITY_STATUS" property="sensitivityStatus" jdbcType="DECIMAL" />
+    <result column="SENSITIVITY_NOTE" property="sensitivityNote" jdbcType="VARCHAR" />
+    <result column="AUDIT_USER" property="auditUser" jdbcType="VARCHAR" />
+    <result column="AUDIT_TIME" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="AUDIT_STATUS" property="auditStatus" jdbcType="DECIMAL" />
+    <result column="AUDIT_OPINION" property="auditOpinion" jdbcType="VARCHAR" />
+    <result column="RELATEDPROCODE" property="relatedprocode" jdbcType="VARCHAR" />
+    <result column="PROBROKER" property="probroker" jdbcType="VARCHAR" />
+    <result column="TERMINATE_APPROVAL" property="terminateApproval" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PRO_TRANS_ID, PROJECT_ID, PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_ID, TRAD_INSTITUTION_NAME, 
+    CREATE_TIME, LAST_UPDATE, PROJECT_NAME, PROJECT_CODE, BUSINESS_STATUS, PROJECT_CLASSIFY_CODE, 
+    PROJECT_TYPE, PROJECT_PRICE, TOTAL_PERCENT, PRO_PRICE_EXPLAIN, TOTAL_PERCENT_EXPLAIN, 
+    PUBLISH_DATE, PUBLISH_DURATION, EXPIRE_DATE, PRE_EXCHANGE_TYPE, SELECT_DATE, ZONE, 
+    INDUSTRY_CODE, WEB_BID_DATE_START, WEB_BID_DATE_END, IS_DEPOSIT, DEPOSIT, DEPOSIT_DATE, 
+    DEPOSIT_DATE_END, PROCONTACT, PROCONTACT_MOBILE, PROCONTACT_EMAIL, DEPTCONTACT, DEPTCONTACT_MOBILE, 
+    MEMBER_ORG, MEMBER_BROKER, MEMBER_MOBILE, MEMBER_EMAIL, PROJECT_URL, WEB_BID_URL, 
+    TERMINATE_DATE, TERMINATE_REASON, PAUSE_DATE, PAUSE_REASON, RESUME_DATE, UNIFIED_DEAL_CODE, 
+    POST_PONE, PLATFORM_CODE, PUB_SERVICE_PLAT_CODE, DATA_TIMESTAMP, EXCEPTION_STATUS, 
+    IS_GZ, IMG_URL, MAN_POSTPONE_REASON, PICK_DATE, EXPIRE_TYPE, EXPIRE_CONDITION, POSTPONE_CYCLE, 
+    REPORT_STATUS, REPORT_TIME, SENSITIVITY_STATUS, SENSITIVITY_NOTE, AUDIT_USER, AUDIT_TIME, 
+    AUDIT_STATUS, AUDIT_OPINION, RELATEDPROCODE, PROBROKER, TERMINATE_APPROVAL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity.CaaeProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPage" resultMap="BaseResultMap"
+		parameterType="com.jmj.entity.CaaeProjectExample">
+		SELECT *
+		FROM (SELECT tt.*, ROWNUM AS rowno
+		FROM (SELECT t.*
+		FROM PRPROCESS.CAAE_PROJECT t
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		ORDER BY audit_status, last_update desc) tt
+		WHERE ROWNUM &lt;= ${end}) table_alias
+		WHERE table_alias.rowno &gt;= ${start}
+	</select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_PROJECT
+    where PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByTrad" resultMap="BaseResultMap" parameterType="com.jmj.entity.CaaeProjectExample" >
+    select trad_institution_id,trad_institution_name from prprocess.caae_project group by trad_institution_id,trad_institution_name
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRPROCESS.CAAE_PROJECT
+    where PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity.CaaeProjectExample" >
+    delete from PRPROCESS.CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity.CaaeProject" >
+    insert into PRPROCESS.CAAE_PROJECT (PRO_TRANS_ID, PROJECT_ID, PLATFORM_ID, 
+      PLATFORM_NAME, TRAD_INSTITUTION_ID, TRAD_INSTITUTION_NAME, 
+      CREATE_TIME, LAST_UPDATE, PROJECT_NAME, 
+      PROJECT_CODE, BUSINESS_STATUS, PROJECT_CLASSIFY_CODE, 
+      PROJECT_TYPE, PROJECT_PRICE, TOTAL_PERCENT, 
+      PRO_PRICE_EXPLAIN, TOTAL_PERCENT_EXPLAIN, PUBLISH_DATE, 
+      PUBLISH_DURATION, EXPIRE_DATE, PRE_EXCHANGE_TYPE, 
+      SELECT_DATE, ZONE, INDUSTRY_CODE, 
+      WEB_BID_DATE_START, WEB_BID_DATE_END, IS_DEPOSIT, 
+      DEPOSIT, DEPOSIT_DATE, DEPOSIT_DATE_END, 
+      PROCONTACT, PROCONTACT_MOBILE, PROCONTACT_EMAIL, 
+      DEPTCONTACT, DEPTCONTACT_MOBILE, MEMBER_ORG, 
+      MEMBER_BROKER, MEMBER_MOBILE, MEMBER_EMAIL, 
+      PROJECT_URL, WEB_BID_URL, TERMINATE_DATE, 
+      TERMINATE_REASON, PAUSE_DATE, PAUSE_REASON, 
+      RESUME_DATE, UNIFIED_DEAL_CODE, POST_PONE, 
+      PLATFORM_CODE, PUB_SERVICE_PLAT_CODE, DATA_TIMESTAMP, 
+      EXCEPTION_STATUS, IS_GZ, IMG_URL, 
+      MAN_POSTPONE_REASON, PICK_DATE, EXPIRE_TYPE, 
+      EXPIRE_CONDITION, POSTPONE_CYCLE, REPORT_STATUS, 
+      REPORT_TIME, SENSITIVITY_STATUS, SENSITIVITY_NOTE, 
+      AUDIT_USER, AUDIT_TIME, AUDIT_STATUS, 
+      AUDIT_OPINION, RELATEDPROCODE, PROBROKER, 
+      TERMINATE_APPROVAL)
+    values (#{proTransId,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{platformId,jdbcType=VARCHAR}, 
+      #{platformName,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, #{tradInstitutionName,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{lastUpdate,jdbcType=TIMESTAMP}, #{projectName,jdbcType=VARCHAR}, 
+      #{projectCode,jdbcType=VARCHAR}, #{businessStatus,jdbcType=VARCHAR}, #{projectClassifyCode,jdbcType=VARCHAR}, 
+      #{projectType,jdbcType=VARCHAR}, #{projectPrice,jdbcType=DECIMAL}, #{totalPercent,jdbcType=DECIMAL}, 
+      #{proPriceExplain,jdbcType=VARCHAR}, #{totalPercentExplain,jdbcType=VARCHAR}, #{publishDate,jdbcType=TIMESTAMP}, 
+      #{publishDuration,jdbcType=DECIMAL}, #{expireDate,jdbcType=TIMESTAMP}, #{preExchangeType,jdbcType=VARCHAR}, 
+      #{selectDate,jdbcType=TIMESTAMP}, #{zone,jdbcType=VARCHAR}, #{industryCode,jdbcType=VARCHAR}, 
+      #{webBidDateStart,jdbcType=TIMESTAMP}, #{webBidDateEnd,jdbcType=TIMESTAMP}, #{isDeposit,jdbcType=VARCHAR}, 
+      #{deposit,jdbcType=DECIMAL}, #{depositDate,jdbcType=TIMESTAMP}, #{depositDateEnd,jdbcType=TIMESTAMP}, 
+      #{procontact,jdbcType=VARCHAR}, #{procontactMobile,jdbcType=VARCHAR}, #{procontactEmail,jdbcType=VARCHAR}, 
+      #{deptcontact,jdbcType=VARCHAR}, #{deptcontactMobile,jdbcType=VARCHAR}, #{memberOrg,jdbcType=VARCHAR}, 
+      #{memberBroker,jdbcType=VARCHAR}, #{memberMobile,jdbcType=VARCHAR}, #{memberEmail,jdbcType=VARCHAR}, 
+      #{projectUrl,jdbcType=VARCHAR}, #{webBidUrl,jdbcType=VARCHAR}, #{terminateDate,jdbcType=TIMESTAMP}, 
+      #{terminateReason,jdbcType=VARCHAR}, #{pauseDate,jdbcType=TIMESTAMP}, #{pauseReason,jdbcType=VARCHAR}, 
+      #{resumeDate,jdbcType=TIMESTAMP}, #{unifiedDealCode,jdbcType=VARCHAR}, #{postPone,jdbcType=VARCHAR}, 
+      #{platformCode,jdbcType=VARCHAR}, #{pubServicePlatCode,jdbcType=VARCHAR}, #{dataTimestamp,jdbcType=TIMESTAMP}, 
+      #{exceptionStatus,jdbcType=VARCHAR}, #{isGz,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{manPostponeReason,jdbcType=VARCHAR}, #{pickDate,jdbcType=TIMESTAMP}, #{expireType,jdbcType=VARCHAR}, 
+      #{expireCondition,jdbcType=VARCHAR}, #{postponeCycle,jdbcType=DECIMAL}, #{reportStatus,jdbcType=VARCHAR}, 
+      #{reportTime,jdbcType=TIMESTAMP}, #{sensitivityStatus,jdbcType=DECIMAL}, #{sensitivityNote,jdbcType=VARCHAR}, 
+      #{auditUser,jdbcType=VARCHAR}, #{auditTime,jdbcType=TIMESTAMP}, #{auditStatus,jdbcType=DECIMAL}, 
+      #{auditOpinion,jdbcType=VARCHAR}, #{relatedprocode,jdbcType=VARCHAR}, #{probroker,jdbcType=VARCHAR}, 
+      #{terminateApproval,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity.CaaeProject" >
+    insert into PRPROCESS.CAAE_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdate != null" >
+        LAST_UPDATE,
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME,
+      </if>
+      <if test="projectCode != null" >
+        PROJECT_CODE,
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS,
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="projectPrice != null" >
+        PROJECT_PRICE,
+      </if>
+      <if test="totalPercent != null" >
+        TOTAL_PERCENT,
+      </if>
+      <if test="proPriceExplain != null" >
+        PRO_PRICE_EXPLAIN,
+      </if>
+      <if test="totalPercentExplain != null" >
+        TOTAL_PERCENT_EXPLAIN,
+      </if>
+      <if test="publishDate != null" >
+        PUBLISH_DATE,
+      </if>
+      <if test="publishDuration != null" >
+        PUBLISH_DURATION,
+      </if>
+      <if test="expireDate != null" >
+        EXPIRE_DATE,
+      </if>
+      <if test="preExchangeType != null" >
+        PRE_EXCHANGE_TYPE,
+      </if>
+      <if test="selectDate != null" >
+        SELECT_DATE,
+      </if>
+      <if test="zone != null" >
+        ZONE,
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE,
+      </if>
+      <if test="webBidDateStart != null" >
+        WEB_BID_DATE_START,
+      </if>
+      <if test="webBidDateEnd != null" >
+        WEB_BID_DATE_END,
+      </if>
+      <if test="isDeposit != null" >
+        IS_DEPOSIT,
+      </if>
+      <if test="deposit != null" >
+        DEPOSIT,
+      </if>
+      <if test="depositDate != null" >
+        DEPOSIT_DATE,
+      </if>
+      <if test="depositDateEnd != null" >
+        DEPOSIT_DATE_END,
+      </if>
+      <if test="procontact != null" >
+        PROCONTACT,
+      </if>
+      <if test="procontactMobile != null" >
+        PROCONTACT_MOBILE,
+      </if>
+      <if test="procontactEmail != null" >
+        PROCONTACT_EMAIL,
+      </if>
+      <if test="deptcontact != null" >
+        DEPTCONTACT,
+      </if>
+      <if test="deptcontactMobile != null" >
+        DEPTCONTACT_MOBILE,
+      </if>
+      <if test="memberOrg != null" >
+        MEMBER_ORG,
+      </if>
+      <if test="memberBroker != null" >
+        MEMBER_BROKER,
+      </if>
+      <if test="memberMobile != null" >
+        MEMBER_MOBILE,
+      </if>
+      <if test="memberEmail != null" >
+        MEMBER_EMAIL,
+      </if>
+      <if test="projectUrl != null" >
+        PROJECT_URL,
+      </if>
+      <if test="webBidUrl != null" >
+        WEB_BID_URL,
+      </if>
+      <if test="terminateDate != null" >
+        TERMINATE_DATE,
+      </if>
+      <if test="terminateReason != null" >
+        TERMINATE_REASON,
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE,
+      </if>
+      <if test="pauseReason != null" >
+        PAUSE_REASON,
+      </if>
+      <if test="resumeDate != null" >
+        RESUME_DATE,
+      </if>
+      <if test="unifiedDealCode != null" >
+        UNIFIED_DEAL_CODE,
+      </if>
+      <if test="postPone != null" >
+        POST_PONE,
+      </if>
+      <if test="platformCode != null" >
+        PLATFORM_CODE,
+      </if>
+      <if test="pubServicePlatCode != null" >
+        PUB_SERVICE_PLAT_CODE,
+      </if>
+      <if test="dataTimestamp != null" >
+        DATA_TIMESTAMP,
+      </if>
+      <if test="exceptionStatus != null" >
+        EXCEPTION_STATUS,
+      </if>
+      <if test="isGz != null" >
+        IS_GZ,
+      </if>
+      <if test="imgUrl != null" >
+        IMG_URL,
+      </if>
+      <if test="manPostponeReason != null" >
+        MAN_POSTPONE_REASON,
+      </if>
+      <if test="pickDate != null" >
+        PICK_DATE,
+      </if>
+      <if test="expireType != null" >
+        EXPIRE_TYPE,
+      </if>
+      <if test="expireCondition != null" >
+        EXPIRE_CONDITION,
+      </if>
+      <if test="postponeCycle != null" >
+        POSTPONE_CYCLE,
+      </if>
+      <if test="reportStatus != null" >
+        REPORT_STATUS,
+      </if>
+      <if test="reportTime != null" >
+        REPORT_TIME,
+      </if>
+      <if test="sensitivityStatus != null" >
+        SENSITIVITY_STATUS,
+      </if>
+      <if test="sensitivityNote != null" >
+        SENSITIVITY_NOTE,
+      </if>
+      <if test="auditUser != null" >
+        AUDIT_USER,
+      </if>
+      <if test="auditTime != null" >
+        AUDIT_TIME,
+      </if>
+      <if test="auditStatus != null" >
+        AUDIT_STATUS,
+      </if>
+      <if test="auditOpinion != null" >
+        AUDIT_OPINION,
+      </if>
+      <if test="relatedprocode != null" >
+        RELATEDPROCODE,
+      </if>
+      <if test="probroker != null" >
+        PROBROKER,
+      </if>
+      <if test="terminateApproval != null" >
+        TERMINATE_APPROVAL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdate != null" >
+        #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCode != null" >
+        #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPrice != null" >
+        #{projectPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPercent != null" >
+        #{totalPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="proPriceExplain != null" >
+        #{proPriceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPercentExplain != null" >
+        #{totalPercentExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null" >
+        #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishDuration != null" >
+        #{publishDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="expireDate != null" >
+        #{expireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preExchangeType != null" >
+        #{preExchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="selectDate != null" >
+        #{selectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zone != null" >
+        #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="webBidDateStart != null" >
+        #{webBidDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="webBidDateEnd != null" >
+        #{webBidDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeposit != null" >
+        #{isDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="depositDate != null" >
+        #{depositDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depositDateEnd != null" >
+        #{depositDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procontact != null" >
+        #{procontact,jdbcType=VARCHAR},
+      </if>
+      <if test="procontactMobile != null" >
+        #{procontactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="procontactEmail != null" >
+        #{procontactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcontact != null" >
+        #{deptcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcontactMobile != null" >
+        #{deptcontactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberOrg != null" >
+        #{memberOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="memberBroker != null" >
+        #{memberBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMobile != null" >
+        #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberEmail != null" >
+        #{memberEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="projectUrl != null" >
+        #{projectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="webBidUrl != null" >
+        #{webBidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="terminateDate != null" >
+        #{terminateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminateReason != null" >
+        #{terminateReason,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseDate != null" >
+        #{pauseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pauseReason != null" >
+        #{pauseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeDate != null" >
+        #{resumeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unifiedDealCode != null" >
+        #{unifiedDealCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postPone != null" >
+        #{postPone,jdbcType=VARCHAR},
+      </if>
+      <if test="platformCode != null" >
+        #{platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pubServicePlatCode != null" >
+        #{pubServicePlatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTimestamp != null" >
+        #{dataTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionStatus != null" >
+        #{exceptionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isGz != null" >
+        #{isGz,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="manPostponeReason != null" >
+        #{manPostponeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="pickDate != null" >
+        #{pickDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireType != null" >
+        #{expireType,jdbcType=VARCHAR},
+      </if>
+      <if test="expireCondition != null" >
+        #{expireCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="postponeCycle != null" >
+        #{postponeCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="reportStatus != null" >
+        #{reportStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null" >
+        #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sensitivityStatus != null" >
+        #{sensitivityStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="sensitivityNote != null" >
+        #{sensitivityNote,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUser != null" >
+        #{auditUser,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditOpinion != null" >
+        #{auditOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedprocode != null" >
+        #{relatedprocode,jdbcType=VARCHAR},
+      </if>
+      <if test="probroker != null" >
+        #{probroker,jdbcType=VARCHAR},
+      </if>
+      <if test="terminateApproval != null" >
+        #{terminateApproval,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity.CaaeProjectExample" resultType="java.lang.Integer" >
+    select count(*) from PRPROCESS.CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="countByExampleById" parameterType="com.jmj.entity.CaaeProjectExample" resultType="java.lang.Integer" >
+    select count(*) from 
+    (
+	select distinct(project_id) from caae_project 
+	<if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+	)
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRPROCESS.CAAE_PROJECT
+    <set >
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdate != null" >
+        LAST_UPDATE = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.projectName != null" >
+        PROJECT_NAME = #{record.projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectCode != null" >
+        PROJECT_CODE = #{record.projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessStatus != null" >
+        BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectPrice != null" >
+        PROJECT_PRICE = #{record.projectPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.totalPercent != null" >
+        TOTAL_PERCENT = #{record.totalPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.proPriceExplain != null" >
+        PRO_PRICE_EXPLAIN = #{record.proPriceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalPercentExplain != null" >
+        TOTAL_PERCENT_EXPLAIN = #{record.totalPercentExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishDate != null" >
+        PUBLISH_DATE = #{record.publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.publishDuration != null" >
+        PUBLISH_DURATION = #{record.publishDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="record.expireDate != null" >
+        EXPIRE_DATE = #{record.expireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.preExchangeType != null" >
+        PRE_EXCHANGE_TYPE = #{record.preExchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selectDate != null" >
+        SELECT_DATE = #{record.selectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zone != null" >
+        ZONE = #{record.zone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.industryCode != null" >
+        INDUSTRY_CODE = #{record.industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webBidDateStart != null" >
+        WEB_BID_DATE_START = #{record.webBidDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.webBidDateEnd != null" >
+        WEB_BID_DATE_END = #{record.webBidDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isDeposit != null" >
+        IS_DEPOSIT = #{record.isDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deposit != null" >
+        DEPOSIT = #{record.deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="record.depositDate != null" >
+        DEPOSIT_DATE = #{record.depositDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.depositDateEnd != null" >
+        DEPOSIT_DATE_END = #{record.depositDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.procontact != null" >
+        PROCONTACT = #{record.procontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.procontactMobile != null" >
+        PROCONTACT_MOBILE = #{record.procontactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.procontactEmail != null" >
+        PROCONTACT_EMAIL = #{record.procontactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcontact != null" >
+        DEPTCONTACT = #{record.deptcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deptcontactMobile != null" >
+        DEPTCONTACT_MOBILE = #{record.deptcontactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberOrg != null" >
+        MEMBER_ORG = #{record.memberOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberBroker != null" >
+        MEMBER_BROKER = #{record.memberBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberMobile != null" >
+        MEMBER_MOBILE = #{record.memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberEmail != null" >
+        MEMBER_EMAIL = #{record.memberEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectUrl != null" >
+        PROJECT_URL = #{record.projectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.webBidUrl != null" >
+        WEB_BID_URL = #{record.webBidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.terminateDate != null" >
+        TERMINATE_DATE = #{record.terminateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.terminateReason != null" >
+        TERMINATE_REASON = #{record.terminateReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pauseDate != null" >
+        PAUSE_DATE = #{record.pauseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pauseReason != null" >
+        PAUSE_REASON = #{record.pauseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resumeDate != null" >
+        RESUME_DATE = #{record.resumeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.unifiedDealCode != null" >
+        UNIFIED_DEAL_CODE = #{record.unifiedDealCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postPone != null" >
+        POST_PONE = #{record.postPone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformCode != null" >
+        PLATFORM_CODE = #{record.platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubServicePlatCode != null" >
+        PUB_SERVICE_PLAT_CODE = #{record.pubServicePlatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dataTimestamp != null" >
+        DATA_TIMESTAMP = #{record.dataTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.exceptionStatus != null" >
+        EXCEPTION_STATUS = #{record.exceptionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isGz != null" >
+        IS_GZ = #{record.isGz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.imgUrl != null" >
+        IMG_URL = #{record.imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.manPostponeReason != null" >
+        MAN_POSTPONE_REASON = #{record.manPostponeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pickDate != null" >
+        PICK_DATE = #{record.pickDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expireType != null" >
+        EXPIRE_TYPE = #{record.expireType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expireCondition != null" >
+        EXPIRE_CONDITION = #{record.expireCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postponeCycle != null" >
+        POSTPONE_CYCLE = #{record.postponeCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="record.reportStatus != null" >
+        REPORT_STATUS = #{record.reportStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportTime != null" >
+        REPORT_TIME = #{record.reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sensitivityStatus != null" >
+        SENSITIVITY_STATUS = #{record.sensitivityStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="record.sensitivityNote != null" >
+        SENSITIVITY_NOTE = #{record.sensitivityNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditUser != null" >
+        AUDIT_USER = #{record.auditUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditTime != null" >
+        AUDIT_TIME = #{record.auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.auditStatus != null" >
+        AUDIT_STATUS = #{record.auditStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="record.auditOpinion != null" >
+        AUDIT_OPINION = #{record.auditOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relatedprocode != null" >
+        RELATEDPROCODE = #{record.relatedprocode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.probroker != null" >
+        PROBROKER = #{record.probroker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.terminateApproval != null" >
+        TERMINATE_APPROVAL = #{record.terminateApproval,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRPROCESS.CAAE_PROJECT
+    set PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE = #{record.lastUpdate,jdbcType=TIMESTAMP},
+      PROJECT_NAME = #{record.projectName,jdbcType=VARCHAR},
+      PROJECT_CODE = #{record.projectCode,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      PROJECT_PRICE = #{record.projectPrice,jdbcType=DECIMAL},
+      TOTAL_PERCENT = #{record.totalPercent,jdbcType=DECIMAL},
+      PRO_PRICE_EXPLAIN = #{record.proPriceExplain,jdbcType=VARCHAR},
+      TOTAL_PERCENT_EXPLAIN = #{record.totalPercentExplain,jdbcType=VARCHAR},
+      PUBLISH_DATE = #{record.publishDate,jdbcType=TIMESTAMP},
+      PUBLISH_DURATION = #{record.publishDuration,jdbcType=DECIMAL},
+      EXPIRE_DATE = #{record.expireDate,jdbcType=TIMESTAMP},
+      PRE_EXCHANGE_TYPE = #{record.preExchangeType,jdbcType=VARCHAR},
+      SELECT_DATE = #{record.selectDate,jdbcType=TIMESTAMP},
+      ZONE = #{record.zone,jdbcType=VARCHAR},
+      INDUSTRY_CODE = #{record.industryCode,jdbcType=VARCHAR},
+      WEB_BID_DATE_START = #{record.webBidDateStart,jdbcType=TIMESTAMP},
+      WEB_BID_DATE_END = #{record.webBidDateEnd,jdbcType=TIMESTAMP},
+      IS_DEPOSIT = #{record.isDeposit,jdbcType=VARCHAR},
+      DEPOSIT = #{record.deposit,jdbcType=DECIMAL},
+      DEPOSIT_DATE = #{record.depositDate,jdbcType=TIMESTAMP},
+      DEPOSIT_DATE_END = #{record.depositDateEnd,jdbcType=TIMESTAMP},
+      PROCONTACT = #{record.procontact,jdbcType=VARCHAR},
+      PROCONTACT_MOBILE = #{record.procontactMobile,jdbcType=VARCHAR},
+      PROCONTACT_EMAIL = #{record.procontactEmail,jdbcType=VARCHAR},
+      DEPTCONTACT = #{record.deptcontact,jdbcType=VARCHAR},
+      DEPTCONTACT_MOBILE = #{record.deptcontactMobile,jdbcType=VARCHAR},
+      MEMBER_ORG = #{record.memberOrg,jdbcType=VARCHAR},
+      MEMBER_BROKER = #{record.memberBroker,jdbcType=VARCHAR},
+      MEMBER_MOBILE = #{record.memberMobile,jdbcType=VARCHAR},
+      MEMBER_EMAIL = #{record.memberEmail,jdbcType=VARCHAR},
+      PROJECT_URL = #{record.projectUrl,jdbcType=VARCHAR},
+      WEB_BID_URL = #{record.webBidUrl,jdbcType=VARCHAR},
+      TERMINATE_DATE = #{record.terminateDate,jdbcType=TIMESTAMP},
+      TERMINATE_REASON = #{record.terminateReason,jdbcType=VARCHAR},
+      PAUSE_DATE = #{record.pauseDate,jdbcType=TIMESTAMP},
+      PAUSE_REASON = #{record.pauseReason,jdbcType=VARCHAR},
+      RESUME_DATE = #{record.resumeDate,jdbcType=TIMESTAMP},
+      UNIFIED_DEAL_CODE = #{record.unifiedDealCode,jdbcType=VARCHAR},
+      POST_PONE = #{record.postPone,jdbcType=VARCHAR},
+      PLATFORM_CODE = #{record.platformCode,jdbcType=VARCHAR},
+      PUB_SERVICE_PLAT_CODE = #{record.pubServicePlatCode,jdbcType=VARCHAR},
+      DATA_TIMESTAMP = #{record.dataTimestamp,jdbcType=TIMESTAMP},
+      EXCEPTION_STATUS = #{record.exceptionStatus,jdbcType=VARCHAR},
+      IS_GZ = #{record.isGz,jdbcType=VARCHAR},
+      IMG_URL = #{record.imgUrl,jdbcType=VARCHAR},
+      MAN_POSTPONE_REASON = #{record.manPostponeReason,jdbcType=VARCHAR},
+      PICK_DATE = #{record.pickDate,jdbcType=TIMESTAMP},
+      EXPIRE_TYPE = #{record.expireType,jdbcType=VARCHAR},
+      EXPIRE_CONDITION = #{record.expireCondition,jdbcType=VARCHAR},
+      POSTPONE_CYCLE = #{record.postponeCycle,jdbcType=DECIMAL},
+      REPORT_STATUS = #{record.reportStatus,jdbcType=VARCHAR},
+      REPORT_TIME = #{record.reportTime,jdbcType=TIMESTAMP},
+      SENSITIVITY_STATUS = #{record.sensitivityStatus,jdbcType=DECIMAL},
+      SENSITIVITY_NOTE = #{record.sensitivityNote,jdbcType=VARCHAR},
+      AUDIT_USER = #{record.auditUser,jdbcType=VARCHAR},
+      AUDIT_TIME = #{record.auditTime,jdbcType=TIMESTAMP},
+      AUDIT_STATUS = #{record.auditStatus,jdbcType=DECIMAL},
+      AUDIT_OPINION = #{record.auditOpinion,jdbcType=VARCHAR},
+      RELATEDPROCODE = #{record.relatedprocode,jdbcType=VARCHAR},
+      PROBROKER = #{record.probroker,jdbcType=VARCHAR},
+      TERMINATE_APPROVAL = #{record.terminateApproval,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity.CaaeProject" >
+    update PRPROCESS.CAAE_PROJECT
+    <set >
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdate != null" >
+        LAST_UPDATE = #{lastUpdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectName != null" >
+        PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectCode != null" >
+        PROJECT_CODE = #{projectCode,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="projectPrice != null" >
+        PROJECT_PRICE = #{projectPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="totalPercent != null" >
+        TOTAL_PERCENT = #{totalPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="proPriceExplain != null" >
+        PRO_PRICE_EXPLAIN = #{proPriceExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPercentExplain != null" >
+        TOTAL_PERCENT_EXPLAIN = #{totalPercentExplain,jdbcType=VARCHAR},
+      </if>
+      <if test="publishDate != null" >
+        PUBLISH_DATE = #{publishDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishDuration != null" >
+        PUBLISH_DURATION = #{publishDuration,jdbcType=DECIMAL},
+      </if>
+      <if test="expireDate != null" >
+        EXPIRE_DATE = #{expireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="preExchangeType != null" >
+        PRE_EXCHANGE_TYPE = #{preExchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="selectDate != null" >
+        SELECT_DATE = #{selectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zone != null" >
+        ZONE = #{zone,jdbcType=VARCHAR},
+      </if>
+      <if test="industryCode != null" >
+        INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="webBidDateStart != null" >
+        WEB_BID_DATE_START = #{webBidDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="webBidDateEnd != null" >
+        WEB_BID_DATE_END = #{webBidDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDeposit != null" >
+        IS_DEPOSIT = #{isDeposit,jdbcType=VARCHAR},
+      </if>
+      <if test="deposit != null" >
+        DEPOSIT = #{deposit,jdbcType=DECIMAL},
+      </if>
+      <if test="depositDate != null" >
+        DEPOSIT_DATE = #{depositDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="depositDateEnd != null" >
+        DEPOSIT_DATE_END = #{depositDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="procontact != null" >
+        PROCONTACT = #{procontact,jdbcType=VARCHAR},
+      </if>
+      <if test="procontactMobile != null" >
+        PROCONTACT_MOBILE = #{procontactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="procontactEmail != null" >
+        PROCONTACT_EMAIL = #{procontactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcontact != null" >
+        DEPTCONTACT = #{deptcontact,jdbcType=VARCHAR},
+      </if>
+      <if test="deptcontactMobile != null" >
+        DEPTCONTACT_MOBILE = #{deptcontactMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberOrg != null" >
+        MEMBER_ORG = #{memberOrg,jdbcType=VARCHAR},
+      </if>
+      <if test="memberBroker != null" >
+        MEMBER_BROKER = #{memberBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMobile != null" >
+        MEMBER_MOBILE = #{memberMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="memberEmail != null" >
+        MEMBER_EMAIL = #{memberEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="projectUrl != null" >
+        PROJECT_URL = #{projectUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="webBidUrl != null" >
+        WEB_BID_URL = #{webBidUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="terminateDate != null" >
+        TERMINATE_DATE = #{terminateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="terminateReason != null" >
+        TERMINATE_REASON = #{terminateReason,jdbcType=VARCHAR},
+      </if>
+      <if test="pauseDate != null" >
+        PAUSE_DATE = #{pauseDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pauseReason != null" >
+        PAUSE_REASON = #{pauseReason,jdbcType=VARCHAR},
+      </if>
+      <if test="resumeDate != null" >
+        RESUME_DATE = #{resumeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unifiedDealCode != null" >
+        UNIFIED_DEAL_CODE = #{unifiedDealCode,jdbcType=VARCHAR},
+      </if>
+      <if test="postPone != null" >
+        POST_PONE = #{postPone,jdbcType=VARCHAR},
+      </if>
+      <if test="platformCode != null" >
+        PLATFORM_CODE = #{platformCode,jdbcType=VARCHAR},
+      </if>
+      <if test="pubServicePlatCode != null" >
+        PUB_SERVICE_PLAT_CODE = #{pubServicePlatCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataTimestamp != null" >
+        DATA_TIMESTAMP = #{dataTimestamp,jdbcType=TIMESTAMP},
+      </if>
+      <if test="exceptionStatus != null" >
+        EXCEPTION_STATUS = #{exceptionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isGz != null" >
+        IS_GZ = #{isGz,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null" >
+        IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="manPostponeReason != null" >
+        MAN_POSTPONE_REASON = #{manPostponeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="pickDate != null" >
+        PICK_DATE = #{pickDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expireType != null" >
+        EXPIRE_TYPE = #{expireType,jdbcType=VARCHAR},
+      </if>
+      <if test="expireCondition != null" >
+        EXPIRE_CONDITION = #{expireCondition,jdbcType=VARCHAR},
+      </if>
+      <if test="postponeCycle != null" >
+        POSTPONE_CYCLE = #{postponeCycle,jdbcType=DECIMAL},
+      </if>
+      <if test="reportStatus != null" >
+        REPORT_STATUS = #{reportStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reportTime != null" >
+        REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sensitivityStatus != null" >
+        SENSITIVITY_STATUS = #{sensitivityStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="sensitivityNote != null" >
+        SENSITIVITY_NOTE = #{sensitivityNote,jdbcType=VARCHAR},
+      </if>
+      <if test="auditUser != null" >
+        AUDIT_USER = #{auditUser,jdbcType=VARCHAR},
+      </if>
+      <if test="auditTime != null" >
+        AUDIT_TIME = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditStatus != null" >
+        AUDIT_STATUS = #{auditStatus,jdbcType=DECIMAL},
+      </if>
+      <if test="auditOpinion != null" >
+        AUDIT_OPINION = #{auditOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedprocode != null" >
+        RELATEDPROCODE = #{relatedprocode,jdbcType=VARCHAR},
+      </if>
+      <if test="probroker != null" >
+        PROBROKER = #{probroker,jdbcType=VARCHAR},
+      </if>
+      <if test="terminateApproval != null" >
+        TERMINATE_APPROVAL = #{terminateApproval,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity.CaaeProject" >
+    update PRPROCESS.CAAE_PROJECT
+    set PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE = #{lastUpdate,jdbcType=TIMESTAMP},
+      PROJECT_NAME = #{projectName,jdbcType=VARCHAR},
+      PROJECT_CODE = #{projectCode,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      PROJECT_PRICE = #{projectPrice,jdbcType=DECIMAL},
+      TOTAL_PERCENT = #{totalPercent,jdbcType=DECIMAL},
+      PRO_PRICE_EXPLAIN = #{proPriceExplain,jdbcType=VARCHAR},
+      TOTAL_PERCENT_EXPLAIN = #{totalPercentExplain,jdbcType=VARCHAR},
+      PUBLISH_DATE = #{publishDate,jdbcType=TIMESTAMP},
+      PUBLISH_DURATION = #{publishDuration,jdbcType=DECIMAL},
+      EXPIRE_DATE = #{expireDate,jdbcType=TIMESTAMP},
+      PRE_EXCHANGE_TYPE = #{preExchangeType,jdbcType=VARCHAR},
+      SELECT_DATE = #{selectDate,jdbcType=TIMESTAMP},
+      ZONE = #{zone,jdbcType=VARCHAR},
+      INDUSTRY_CODE = #{industryCode,jdbcType=VARCHAR},
+      WEB_BID_DATE_START = #{webBidDateStart,jdbcType=TIMESTAMP},
+      WEB_BID_DATE_END = #{webBidDateEnd,jdbcType=TIMESTAMP},
+      IS_DEPOSIT = #{isDeposit,jdbcType=VARCHAR},
+      DEPOSIT = #{deposit,jdbcType=DECIMAL},
+      DEPOSIT_DATE = #{depositDate,jdbcType=TIMESTAMP},
+      DEPOSIT_DATE_END = #{depositDateEnd,jdbcType=TIMESTAMP},
+      PROCONTACT = #{procontact,jdbcType=VARCHAR},
+      PROCONTACT_MOBILE = #{procontactMobile,jdbcType=VARCHAR},
+      PROCONTACT_EMAIL = #{procontactEmail,jdbcType=VARCHAR},
+      DEPTCONTACT = #{deptcontact,jdbcType=VARCHAR},
+      DEPTCONTACT_MOBILE = #{deptcontactMobile,jdbcType=VARCHAR},
+      MEMBER_ORG = #{memberOrg,jdbcType=VARCHAR},
+      MEMBER_BROKER = #{memberBroker,jdbcType=VARCHAR},
+      MEMBER_MOBILE = #{memberMobile,jdbcType=VARCHAR},
+      MEMBER_EMAIL = #{memberEmail,jdbcType=VARCHAR},
+      PROJECT_URL = #{projectUrl,jdbcType=VARCHAR},
+      WEB_BID_URL = #{webBidUrl,jdbcType=VARCHAR},
+      TERMINATE_DATE = #{terminateDate,jdbcType=TIMESTAMP},
+      TERMINATE_REASON = #{terminateReason,jdbcType=VARCHAR},
+      PAUSE_DATE = #{pauseDate,jdbcType=TIMESTAMP},
+      PAUSE_REASON = #{pauseReason,jdbcType=VARCHAR},
+      RESUME_DATE = #{resumeDate,jdbcType=TIMESTAMP},
+      UNIFIED_DEAL_CODE = #{unifiedDealCode,jdbcType=VARCHAR},
+      POST_PONE = #{postPone,jdbcType=VARCHAR},
+      PLATFORM_CODE = #{platformCode,jdbcType=VARCHAR},
+      PUB_SERVICE_PLAT_CODE = #{pubServicePlatCode,jdbcType=VARCHAR},
+      DATA_TIMESTAMP = #{dataTimestamp,jdbcType=TIMESTAMP},
+      EXCEPTION_STATUS = #{exceptionStatus,jdbcType=VARCHAR},
+      IS_GZ = #{isGz,jdbcType=VARCHAR},
+      IMG_URL = #{imgUrl,jdbcType=VARCHAR},
+      MAN_POSTPONE_REASON = #{manPostponeReason,jdbcType=VARCHAR},
+      PICK_DATE = #{pickDate,jdbcType=TIMESTAMP},
+      EXPIRE_TYPE = #{expireType,jdbcType=VARCHAR},
+      EXPIRE_CONDITION = #{expireCondition,jdbcType=VARCHAR},
+      POSTPONE_CYCLE = #{postponeCycle,jdbcType=DECIMAL},
+      REPORT_STATUS = #{reportStatus,jdbcType=VARCHAR},
+      REPORT_TIME = #{reportTime,jdbcType=TIMESTAMP},
+      SENSITIVITY_STATUS = #{sensitivityStatus,jdbcType=DECIMAL},
+      SENSITIVITY_NOTE = #{sensitivityNote,jdbcType=VARCHAR},
+      AUDIT_USER = #{auditUser,jdbcType=VARCHAR},
+      AUDIT_TIME = #{auditTime,jdbcType=TIMESTAMP},
+      AUDIT_STATUS = #{auditStatus,jdbcType=DECIMAL},
+      AUDIT_OPINION = #{auditOpinion,jdbcType=VARCHAR},
+      RELATEDPROCODE = #{relatedprocode,jdbcType=VARCHAR},
+      PROBROKER = #{probroker,jdbcType=VARCHAR},
+      TERMINATE_APPROVAL = #{terminateApproval,jdbcType=VARCHAR}
+    where PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR}
+  </update>
+</mapper>

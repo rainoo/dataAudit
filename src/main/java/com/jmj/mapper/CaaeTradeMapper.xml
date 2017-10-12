@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao.CaaeTradeMapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity.CaaeTrade" >
+    <id column="TRADE_ID" property="tradeId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="LAST_UPDATE_TIME" property="lastUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="PLATFORM_ID" property="platformId" jdbcType="VARCHAR" />
+    <result column="PLATFORM_NAME" property="platformName" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_NAME" property="tradInstitutionName" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="BUYER_NAME" property="buyerName" jdbcType="VARCHAR" />
+    <result column="EXCHANGE_TYPE" property="exchangeType" jdbcType="VARCHAR" />
+    <result column="TRANSACTION_TIME" property="transactionTime" jdbcType="VARCHAR" />
+    <result column="TRADE_VALUE" property="tradeValue" jdbcType="DECIMAL" />
+    <result column="TRADE_DATE" property="tradeDate" jdbcType="TIMESTAMP" />
+    <result column="TRADE_PERCENT" property="tradePercent" jdbcType="DECIMAL" />
+    <result column="TRADE_AMOUNT" property="tradeAmount" jdbcType="DECIMAL" />
+    <result column="PAYMENT_TYPE" property="paymentType" jdbcType="VARCHAR" />
+    <result column="FIRST_PAY_VALUE" property="firstPayValue" jdbcType="DECIMAL" />
+    <result column="FIRST_PAY_PERCENT" property="firstPayPercent" jdbcType="DECIMAL" />
+    <result column="REMAIN_PAY_DATE" property="remainPayDate" jdbcType="TIMESTAMP" />
+    <result column="ANNOUNCE_PUB_DATE" property="announcePubDate" jdbcType="TIMESTAMP" />
+    <result column="CONTR_SIGN_DATE" property="contrSignDate" jdbcType="TIMESTAMP" />
+    <result column="CONTR_EFFECT_DATE" property="contrEffectDate" jdbcType="TIMESTAMP" />
+    <result column="CONTRACT_DATE" property="contractDate" jdbcType="TIMESTAMP" />
+    <result column="CHANGE_EX_TYPE_REASON" property="changeExTypeReason" jdbcType="VARCHAR" />
+    <result column="BUYER_ID" property="buyerId" jdbcType="VARCHAR" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="NON_MONETARY_EST_VALUE" property="nonMonetaryEstValue" jdbcType="DECIMAL" />
+    <result column="NON_MONETARY_EST_UNIT" property="nonMonetaryEstUnit" jdbcType="VARCHAR" />
+    <result column="NON_MONETARY_EST_DATE" property="nonMonetaryEstDate" jdbcType="VARCHAR" />
+    <result column="NON_MONETARY_APPR_UNIT" property="nonMonetaryApprUnit" jdbcType="VARCHAR" />
+    <result column="NON_MONETARY_APPR_DATE" property="nonMonetaryApprDate" jdbcType="VARCHAR" />
+    <result column="NON_MONETARY_REMARK" property="nonMonetaryRemark" jdbcType="VARCHAR" />
+    <result column="COMPLETION_RECORD" property="completionRecord" jdbcType="VARCHAR" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="BUSINESS_STATUS" property="businessStatus" jdbcType="VARCHAR" />
+    <result column="PROJECT_CLASSIFY_CODE" property="projectClassifyCode" jdbcType="VARCHAR" />
+    <result column="FINAL_ECONOMY_TYPE" property="finalEconomyType" jdbcType="VARCHAR" />
+    <result column="INVEST_WAY" property="investWay" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TRADE_ID, CREATE_TIME, LAST_UPDATE_TIME, PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_NAME, 
+    PROJECT_TYPE, BUYER_NAME, EXCHANGE_TYPE, TRANSACTION_TIME, TRADE_VALUE, TRADE_DATE, 
+    TRADE_PERCENT, TRADE_AMOUNT, PAYMENT_TYPE, FIRST_PAY_VALUE, FIRST_PAY_PERCENT, REMAIN_PAY_DATE, 
+    ANNOUNCE_PUB_DATE, CONTR_SIGN_DATE, CONTR_EFFECT_DATE, CONTRACT_DATE, CHANGE_EX_TYPE_REASON, 
+    BUYER_ID, PRO_TRANS_ID, NON_MONETARY_EST_VALUE, NON_MONETARY_EST_UNIT, NON_MONETARY_EST_DATE, 
+    NON_MONETARY_APPR_UNIT, NON_MONETARY_APPR_DATE, NON_MONETARY_REMARK, COMPLETION_RECORD, 
+    PROJECT_ID, TRAD_INSTITUTION_ID, BUSINESS_STATUS, PROJECT_CLASSIFY_CODE, FINAL_ECONOMY_TYPE, 
+    INVEST_WAY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity.CaaeTradeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_TRADE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_TRADE
+    where TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRPROCESS.CAAE_TRADE
+    where TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity.CaaeTradeExample" >
+    delete from PRPROCESS.CAAE_TRADE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity.CaaeTrade" >
+    insert into PRPROCESS.CAAE_TRADE (TRADE_ID, CREATE_TIME, LAST_UPDATE_TIME, 
+      PLATFORM_ID, PLATFORM_NAME, TRAD_INSTITUTION_NAME, 
+      PROJECT_TYPE, BUYER_NAME, EXCHANGE_TYPE, 
+      TRANSACTION_TIME, TRADE_VALUE, TRADE_DATE, 
+      TRADE_PERCENT, TRADE_AMOUNT, PAYMENT_TYPE, 
+      FIRST_PAY_VALUE, FIRST_PAY_PERCENT, REMAIN_PAY_DATE, 
+      ANNOUNCE_PUB_DATE, CONTR_SIGN_DATE, CONTR_EFFECT_DATE, 
+      CONTRACT_DATE, CHANGE_EX_TYPE_REASON, BUYER_ID, 
+      PRO_TRANS_ID, NON_MONETARY_EST_VALUE, NON_MONETARY_EST_UNIT, 
+      NON_MONETARY_EST_DATE, NON_MONETARY_APPR_UNIT, 
+      NON_MONETARY_APPR_DATE, NON_MONETARY_REMARK, 
+      COMPLETION_RECORD, PROJECT_ID, TRAD_INSTITUTION_ID, 
+      BUSINESS_STATUS, PROJECT_CLASSIFY_CODE, FINAL_ECONOMY_TYPE, 
+      INVEST_WAY)
+    values (#{tradeId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{lastUpdateTime,jdbcType=TIMESTAMP}, 
+      #{platformId,jdbcType=VARCHAR}, #{platformName,jdbcType=VARCHAR}, #{tradInstitutionName,jdbcType=VARCHAR}, 
+      #{projectType,jdbcType=VARCHAR}, #{buyerName,jdbcType=VARCHAR}, #{exchangeType,jdbcType=VARCHAR}, 
+      #{transactionTime,jdbcType=VARCHAR}, #{tradeValue,jdbcType=DECIMAL}, #{tradeDate,jdbcType=TIMESTAMP}, 
+      #{tradePercent,jdbcType=DECIMAL}, #{tradeAmount,jdbcType=DECIMAL}, #{paymentType,jdbcType=VARCHAR}, 
+      #{firstPayValue,jdbcType=DECIMAL}, #{firstPayPercent,jdbcType=DECIMAL}, #{remainPayDate,jdbcType=TIMESTAMP}, 
+      #{announcePubDate,jdbcType=TIMESTAMP}, #{contrSignDate,jdbcType=TIMESTAMP}, #{contrEffectDate,jdbcType=TIMESTAMP}, 
+      #{contractDate,jdbcType=TIMESTAMP}, #{changeExTypeReason,jdbcType=VARCHAR}, #{buyerId,jdbcType=VARCHAR}, 
+      #{proTransId,jdbcType=VARCHAR}, #{nonMonetaryEstValue,jdbcType=DECIMAL}, #{nonMonetaryEstUnit,jdbcType=VARCHAR}, 
+      #{nonMonetaryEstDate,jdbcType=VARCHAR}, #{nonMonetaryApprUnit,jdbcType=VARCHAR}, 
+      #{nonMonetaryApprDate,jdbcType=VARCHAR}, #{nonMonetaryRemark,jdbcType=VARCHAR}, 
+      #{completionRecord,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, 
+      #{businessStatus,jdbcType=VARCHAR}, #{projectClassifyCode,jdbcType=VARCHAR}, #{finalEconomyType,jdbcType=VARCHAR}, 
+      #{investWay,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity.CaaeTrade" >
+    insert into PRPROCESS.CAAE_TRADE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        TRADE_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME,
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID,
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME,
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME,
+      </if>
+      <if test="exchangeType != null" >
+        EXCHANGE_TYPE,
+      </if>
+      <if test="transactionTime != null" >
+        TRANSACTION_TIME,
+      </if>
+      <if test="tradeValue != null" >
+        TRADE_VALUE,
+      </if>
+      <if test="tradeDate != null" >
+        TRADE_DATE,
+      </if>
+      <if test="tradePercent != null" >
+        TRADE_PERCENT,
+      </if>
+      <if test="tradeAmount != null" >
+        TRADE_AMOUNT,
+      </if>
+      <if test="paymentType != null" >
+        PAYMENT_TYPE,
+      </if>
+      <if test="firstPayValue != null" >
+        FIRST_PAY_VALUE,
+      </if>
+      <if test="firstPayPercent != null" >
+        FIRST_PAY_PERCENT,
+      </if>
+      <if test="remainPayDate != null" >
+        REMAIN_PAY_DATE,
+      </if>
+      <if test="announcePubDate != null" >
+        ANNOUNCE_PUB_DATE,
+      </if>
+      <if test="contrSignDate != null" >
+        CONTR_SIGN_DATE,
+      </if>
+      <if test="contrEffectDate != null" >
+        CONTR_EFFECT_DATE,
+      </if>
+      <if test="contractDate != null" >
+        CONTRACT_DATE,
+      </if>
+      <if test="changeExTypeReason != null" >
+        CHANGE_EX_TYPE_REASON,
+      </if>
+      <if test="buyerId != null" >
+        BUYER_ID,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="nonMonetaryEstValue != null" >
+        NON_MONETARY_EST_VALUE,
+      </if>
+      <if test="nonMonetaryEstUnit != null" >
+        NON_MONETARY_EST_UNIT,
+      </if>
+      <if test="nonMonetaryEstDate != null" >
+        NON_MONETARY_EST_DATE,
+      </if>
+      <if test="nonMonetaryApprUnit != null" >
+        NON_MONETARY_APPR_UNIT,
+      </if>
+      <if test="nonMonetaryApprDate != null" >
+        NON_MONETARY_APPR_DATE,
+      </if>
+      <if test="nonMonetaryRemark != null" >
+        NON_MONETARY_REMARK,
+      </if>
+      <if test="completionRecord != null" >
+        COMPLETION_RECORD,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS,
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE,
+      </if>
+      <if test="finalEconomyType != null" >
+        FINAL_ECONOMY_TYPE,
+      </if>
+      <if test="investWay != null" >
+        INVEST_WAY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tradeId != null" >
+        #{tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeType != null" >
+        #{exchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionTime != null" >
+        #{transactionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeValue != null" >
+        #{tradeValue,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeDate != null" >
+        #{tradeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradePercent != null" >
+        #{tradePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeAmount != null" >
+        #{tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null" >
+        #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPayValue != null" >
+        #{firstPayValue,jdbcType=DECIMAL},
+      </if>
+      <if test="firstPayPercent != null" >
+        #{firstPayPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="remainPayDate != null" >
+        #{remainPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="announcePubDate != null" >
+        #{announcePubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contrSignDate != null" >
+        #{contrSignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contrEffectDate != null" >
+        #{contrEffectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractDate != null" >
+        #{contractDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeExTypeReason != null" >
+        #{changeExTypeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryEstValue != null" >
+        #{nonMonetaryEstValue,jdbcType=DECIMAL},
+      </if>
+      <if test="nonMonetaryEstUnit != null" >
+        #{nonMonetaryEstUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryEstDate != null" >
+        #{nonMonetaryEstDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryApprUnit != null" >
+        #{nonMonetaryApprUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryApprDate != null" >
+        #{nonMonetaryApprDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryRemark != null" >
+        #{nonMonetaryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="completionRecord != null" >
+        #{completionRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="finalEconomyType != null" >
+        #{finalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="investWay != null" >
+        #{investWay,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity.CaaeTradeExample" resultType="java.lang.Integer" >
+    select count(*) from PRPROCESS.CAAE_TRADE
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRPROCESS.CAAE_TRADE
+    <set >
+      <if test="record.tradeId != null" >
+        TRADE_ID = #{record.tradeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.platformId != null" >
+        PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformName != null" >
+        PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerName != null" >
+        BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exchangeType != null" >
+        EXCHANGE_TYPE = #{record.exchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transactionTime != null" >
+        TRANSACTION_TIME = #{record.transactionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeValue != null" >
+        TRADE_VALUE = #{record.tradeValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tradeDate != null" >
+        TRADE_DATE = #{record.tradeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.tradePercent != null" >
+        TRADE_PERCENT = #{record.tradePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tradeAmount != null" >
+        TRADE_AMOUNT = #{record.tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.paymentType != null" >
+        PAYMENT_TYPE = #{record.paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstPayValue != null" >
+        FIRST_PAY_VALUE = #{record.firstPayValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.firstPayPercent != null" >
+        FIRST_PAY_PERCENT = #{record.firstPayPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.remainPayDate != null" >
+        REMAIN_PAY_DATE = #{record.remainPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.announcePubDate != null" >
+        ANNOUNCE_PUB_DATE = #{record.announcePubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.contrSignDate != null" >
+        CONTR_SIGN_DATE = #{record.contrSignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.contrEffectDate != null" >
+        CONTR_EFFECT_DATE = #{record.contrEffectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.contractDate != null" >
+        CONTRACT_DATE = #{record.contractDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.changeExTypeReason != null" >
+        CHANGE_EX_TYPE_REASON = #{record.changeExTypeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerId != null" >
+        BUYER_ID = #{record.buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nonMonetaryEstValue != null" >
+        NON_MONETARY_EST_VALUE = #{record.nonMonetaryEstValue,jdbcType=DECIMAL},
+      </if>
+      <if test="record.nonMonetaryEstUnit != null" >
+        NON_MONETARY_EST_UNIT = #{record.nonMonetaryEstUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nonMonetaryEstDate != null" >
+        NON_MONETARY_EST_DATE = #{record.nonMonetaryEstDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nonMonetaryApprUnit != null" >
+        NON_MONETARY_APPR_UNIT = #{record.nonMonetaryApprUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nonMonetaryApprDate != null" >
+        NON_MONETARY_APPR_DATE = #{record.nonMonetaryApprDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nonMonetaryRemark != null" >
+        NON_MONETARY_REMARK = #{record.nonMonetaryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.completionRecord != null" >
+        COMPLETION_RECORD = #{record.completionRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessStatus != null" >
+        BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finalEconomyType != null" >
+        FINAL_ECONOMY_TYPE = #{record.finalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.investWay != null" >
+        INVEST_WAY = #{record.investWay,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRPROCESS.CAAE_TRADE
+    set TRADE_ID = #{record.tradeId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{record.lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{record.platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{record.platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{record.tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      BUYER_NAME = #{record.buyerName,jdbcType=VARCHAR},
+      EXCHANGE_TYPE = #{record.exchangeType,jdbcType=VARCHAR},
+      TRANSACTION_TIME = #{record.transactionTime,jdbcType=VARCHAR},
+      TRADE_VALUE = #{record.tradeValue,jdbcType=DECIMAL},
+      TRADE_DATE = #{record.tradeDate,jdbcType=TIMESTAMP},
+      TRADE_PERCENT = #{record.tradePercent,jdbcType=DECIMAL},
+      TRADE_AMOUNT = #{record.tradeAmount,jdbcType=DECIMAL},
+      PAYMENT_TYPE = #{record.paymentType,jdbcType=VARCHAR},
+      FIRST_PAY_VALUE = #{record.firstPayValue,jdbcType=DECIMAL},
+      FIRST_PAY_PERCENT = #{record.firstPayPercent,jdbcType=DECIMAL},
+      REMAIN_PAY_DATE = #{record.remainPayDate,jdbcType=TIMESTAMP},
+      ANNOUNCE_PUB_DATE = #{record.announcePubDate,jdbcType=TIMESTAMP},
+      CONTR_SIGN_DATE = #{record.contrSignDate,jdbcType=TIMESTAMP},
+      CONTR_EFFECT_DATE = #{record.contrEffectDate,jdbcType=TIMESTAMP},
+      CONTRACT_DATE = #{record.contractDate,jdbcType=TIMESTAMP},
+      CHANGE_EX_TYPE_REASON = #{record.changeExTypeReason,jdbcType=VARCHAR},
+      BUYER_ID = #{record.buyerId,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      NON_MONETARY_EST_VALUE = #{record.nonMonetaryEstValue,jdbcType=DECIMAL},
+      NON_MONETARY_EST_UNIT = #{record.nonMonetaryEstUnit,jdbcType=VARCHAR},
+      NON_MONETARY_EST_DATE = #{record.nonMonetaryEstDate,jdbcType=VARCHAR},
+      NON_MONETARY_APPR_UNIT = #{record.nonMonetaryApprUnit,jdbcType=VARCHAR},
+      NON_MONETARY_APPR_DATE = #{record.nonMonetaryApprDate,jdbcType=VARCHAR},
+      NON_MONETARY_REMARK = #{record.nonMonetaryRemark,jdbcType=VARCHAR},
+      COMPLETION_RECORD = #{record.completionRecord,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      FINAL_ECONOMY_TYPE = #{record.finalEconomyType,jdbcType=VARCHAR},
+      INVEST_WAY = #{record.investWay,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity.CaaeTrade" >
+    update PRPROCESS.CAAE_TRADE
+    <set >
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastUpdateTime != null" >
+        LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platformId != null" >
+        PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      </if>
+      <if test="platformName != null" >
+        PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionName != null" >
+        TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerName != null" >
+        BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangeType != null" >
+        EXCHANGE_TYPE = #{exchangeType,jdbcType=VARCHAR},
+      </if>
+      <if test="transactionTime != null" >
+        TRANSACTION_TIME = #{transactionTime,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeValue != null" >
+        TRADE_VALUE = #{tradeValue,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeDate != null" >
+        TRADE_DATE = #{tradeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tradePercent != null" >
+        TRADE_PERCENT = #{tradePercent,jdbcType=DECIMAL},
+      </if>
+      <if test="tradeAmount != null" >
+        TRADE_AMOUNT = #{tradeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="paymentType != null" >
+        PAYMENT_TYPE = #{paymentType,jdbcType=VARCHAR},
+      </if>
+      <if test="firstPayValue != null" >
+        FIRST_PAY_VALUE = #{firstPayValue,jdbcType=DECIMAL},
+      </if>
+      <if test="firstPayPercent != null" >
+        FIRST_PAY_PERCENT = #{firstPayPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="remainPayDate != null" >
+        REMAIN_PAY_DATE = #{remainPayDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="announcePubDate != null" >
+        ANNOUNCE_PUB_DATE = #{announcePubDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contrSignDate != null" >
+        CONTR_SIGN_DATE = #{contrSignDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contrEffectDate != null" >
+        CONTR_EFFECT_DATE = #{contrEffectDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractDate != null" >
+        CONTRACT_DATE = #{contractDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changeExTypeReason != null" >
+        CHANGE_EX_TYPE_REASON = #{changeExTypeReason,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerId != null" >
+        BUYER_ID = #{buyerId,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryEstValue != null" >
+        NON_MONETARY_EST_VALUE = #{nonMonetaryEstValue,jdbcType=DECIMAL},
+      </if>
+      <if test="nonMonetaryEstUnit != null" >
+        NON_MONETARY_EST_UNIT = #{nonMonetaryEstUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryEstDate != null" >
+        NON_MONETARY_EST_DATE = #{nonMonetaryEstDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryApprUnit != null" >
+        NON_MONETARY_APPR_UNIT = #{nonMonetaryApprUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryApprDate != null" >
+        NON_MONETARY_APPR_DATE = #{nonMonetaryApprDate,jdbcType=VARCHAR},
+      </if>
+      <if test="nonMonetaryRemark != null" >
+        NON_MONETARY_REMARK = #{nonMonetaryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="completionRecord != null" >
+        COMPLETION_RECORD = #{completionRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="finalEconomyType != null" >
+        FINAL_ECONOMY_TYPE = #{finalEconomyType,jdbcType=VARCHAR},
+      </if>
+      <if test="investWay != null" >
+        INVEST_WAY = #{investWay,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity.CaaeTrade" >
+    update PRPROCESS.CAAE_TRADE
+    set CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      LAST_UPDATE_TIME = #{lastUpdateTime,jdbcType=TIMESTAMP},
+      PLATFORM_ID = #{platformId,jdbcType=VARCHAR},
+      PLATFORM_NAME = #{platformName,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_NAME = #{tradInstitutionName,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      BUYER_NAME = #{buyerName,jdbcType=VARCHAR},
+      EXCHANGE_TYPE = #{exchangeType,jdbcType=VARCHAR},
+      TRANSACTION_TIME = #{transactionTime,jdbcType=VARCHAR},
+      TRADE_VALUE = #{tradeValue,jdbcType=DECIMAL},
+      TRADE_DATE = #{tradeDate,jdbcType=TIMESTAMP},
+      TRADE_PERCENT = #{tradePercent,jdbcType=DECIMAL},
+      TRADE_AMOUNT = #{tradeAmount,jdbcType=DECIMAL},
+      PAYMENT_TYPE = #{paymentType,jdbcType=VARCHAR},
+      FIRST_PAY_VALUE = #{firstPayValue,jdbcType=DECIMAL},
+      FIRST_PAY_PERCENT = #{firstPayPercent,jdbcType=DECIMAL},
+      REMAIN_PAY_DATE = #{remainPayDate,jdbcType=TIMESTAMP},
+      ANNOUNCE_PUB_DATE = #{announcePubDate,jdbcType=TIMESTAMP},
+      CONTR_SIGN_DATE = #{contrSignDate,jdbcType=TIMESTAMP},
+      CONTR_EFFECT_DATE = #{contrEffectDate,jdbcType=TIMESTAMP},
+      CONTRACT_DATE = #{contractDate,jdbcType=TIMESTAMP},
+      CHANGE_EX_TYPE_REASON = #{changeExTypeReason,jdbcType=VARCHAR},
+      BUYER_ID = #{buyerId,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      NON_MONETARY_EST_VALUE = #{nonMonetaryEstValue,jdbcType=DECIMAL},
+      NON_MONETARY_EST_UNIT = #{nonMonetaryEstUnit,jdbcType=VARCHAR},
+      NON_MONETARY_EST_DATE = #{nonMonetaryEstDate,jdbcType=VARCHAR},
+      NON_MONETARY_APPR_UNIT = #{nonMonetaryApprUnit,jdbcType=VARCHAR},
+      NON_MONETARY_APPR_DATE = #{nonMonetaryApprDate,jdbcType=VARCHAR},
+      NON_MONETARY_REMARK = #{nonMonetaryRemark,jdbcType=VARCHAR},
+      COMPLETION_RECORD = #{completionRecord,jdbcType=VARCHAR},
+      PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      FINAL_ECONOMY_TYPE = #{finalEconomyType,jdbcType=VARCHAR},
+      INVEST_WAY = #{investWay,jdbcType=VARCHAR}
+    where TRADE_ID = #{tradeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

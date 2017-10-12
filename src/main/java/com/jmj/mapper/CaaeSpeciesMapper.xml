@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao.CaaeSpeciesMapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity.CaaeSpecies" >
+    <id column="SPECIES_ID" property="speciesId" jdbcType="VARCHAR" />
+    <result column="SPECIES_CODE" property="speciesCode" jdbcType="VARCHAR" />
+    <result column="SPECIES_NAME" property="speciesName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SPECIES_ID, SPECIES_CODE, SPECIES_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity.CaaeSpeciesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_SPECIES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRPROCESS.CAAE_SPECIES
+    where SPECIES_ID = #{speciesId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRPROCESS.CAAE_SPECIES
+    where SPECIES_ID = #{speciesId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity.CaaeSpeciesExample" >
+    delete from PRPROCESS.CAAE_SPECIES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity.CaaeSpecies" >
+    insert into PRPROCESS.CAAE_SPECIES (SPECIES_ID, SPECIES_CODE, SPECIES_NAME
+      )
+    values (#{speciesId,jdbcType=VARCHAR}, #{speciesCode,jdbcType=VARCHAR}, #{speciesName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity.CaaeSpecies" >
+    insert into PRPROCESS.CAAE_SPECIES
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="speciesId != null" >
+        SPECIES_ID,
+      </if>
+      <if test="speciesCode != null" >
+        SPECIES_CODE,
+      </if>
+      <if test="speciesName != null" >
+        SPECIES_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="speciesId != null" >
+        #{speciesId,jdbcType=VARCHAR},
+      </if>
+      <if test="speciesCode != null" >
+        #{speciesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="speciesName != null" >
+        #{speciesName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity.CaaeSpeciesExample" resultType="java.lang.Integer" >
+    select count(*) from PRPROCESS.CAAE_SPECIES
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRPROCESS.CAAE_SPECIES
+    <set >
+      <if test="record.speciesId != null" >
+        SPECIES_ID = #{record.speciesId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.speciesCode != null" >
+        SPECIES_CODE = #{record.speciesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.speciesName != null" >
+        SPECIES_NAME = #{record.speciesName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRPROCESS.CAAE_SPECIES
+    set SPECIES_ID = #{record.speciesId,jdbcType=VARCHAR},
+      SPECIES_CODE = #{record.speciesCode,jdbcType=VARCHAR},
+      SPECIES_NAME = #{record.speciesName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity.CaaeSpecies" >
+    update PRPROCESS.CAAE_SPECIES
+    <set >
+      <if test="speciesCode != null" >
+        SPECIES_CODE = #{speciesCode,jdbcType=VARCHAR},
+      </if>
+      <if test="speciesName != null" >
+        SPECIES_NAME = #{speciesName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SPECIES_ID = #{speciesId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity.CaaeSpecies" >
+    update PRPROCESS.CAAE_SPECIES
+    set SPECIES_CODE = #{speciesCode,jdbcType=VARCHAR},
+      SPECIES_NAME = #{speciesName,jdbcType=VARCHAR}
+    where SPECIES_ID = #{speciesId,jdbcType=VARCHAR}
+  </update>
+</mapper>

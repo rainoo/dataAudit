@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jmj.dao.GqCaaeProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.jmj.entity.GqCaaeProject" >
+    <id column="UUID" property="uuid" jdbcType="VARCHAR" />
+    <result column="PRO_TRANS_ID" property="proTransId" jdbcType="VARCHAR" />
+    <result column="GET_CONTROLLING_INTEREST" property="getControllingInterest" jdbcType="VARCHAR" />
+    <result column="PROJECT_TYPE" property="projectType" jdbcType="VARCHAR" />
+    <result column="GO_TYPE" property="goType" jdbcType="VARCHAR" />
+    <result column="RELATED_PRO_CODE" property="relatedProCode" jdbcType="VARCHAR" />
+    <result column="IS_BIND" property="isBind" jdbcType="VARCHAR" />
+    <result column="PRO_BROKER" property="proBroker" jdbcType="VARCHAR" />
+    <result column="MANAGEMENT_INTENT" property="managementIntent" jdbcType="VARCHAR" />
+    <result column="GIVE_UP_PRIORITY" property="giveUpPriority" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_SETTLE" property="employeeSettle" jdbcType="VARCHAR" />
+    <result column="BUYER_POSTULATE" property="buyerPostulate" jdbcType="VARCHAR" />
+    <result column="IMPORTANT_INFO" property="importantInfo" jdbcType="VARCHAR" />
+    <result column="OTHER_CONDITIONS" property="otherConditions" jdbcType="VARCHAR" />
+    <result column="AUTHORIZE_UNIT" property="authorizeUnit" jdbcType="VARCHAR" />
+    <result column="TRANS_PROMISE" property="transPromise" jdbcType="VARCHAR" />
+    <result column="LIMIT_TIME" property="limitTime" jdbcType="DECIMAL" />
+    <result column="ALLOW_END_PRIO" property="allowEndPrio" jdbcType="VARCHAR" />
+    <result column="ALLOW_HOLL_PRIO" property="allowHollPrio" jdbcType="VARCHAR" />
+    <result column="ALLOW_END_BID" property="allowEndBid" jdbcType="VARCHAR" />
+    <result column="IS_COMMISSION" property="isCommission" jdbcType="VARCHAR" />
+    <result column="COM_PERCENT" property="comPercent" jdbcType="DECIMAL" />
+    <result column="COMMISSION" property="commission" jdbcType="DECIMAL" />
+    <result column="INCREMENT_GROUP" property="incrementGroup" jdbcType="VARCHAR" />
+    <result column="INCREMENT_VALUE" property="incrementValue" jdbcType="VARCHAR" />
+    <result column="PROJECT_ID" property="projectId" jdbcType="VARCHAR" />
+    <result column="TRAD_INSTITUTION_ID" property="tradInstitutionId" jdbcType="VARCHAR" />
+    <result column="BUSINESS_STATUS" property="businessStatus" jdbcType="VARCHAR" />
+    <result column="PROJECT_CLASSIFY_CODE" property="projectClassifyCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    UUID, PRO_TRANS_ID, GET_CONTROLLING_INTEREST, PROJECT_TYPE, GO_TYPE, RELATED_PRO_CODE, 
+    IS_BIND, PRO_BROKER, MANAGEMENT_INTENT, GIVE_UP_PRIORITY, EMPLOYEE_SETTLE, BUYER_POSTULATE, 
+    IMPORTANT_INFO, OTHER_CONDITIONS, AUTHORIZE_UNIT, TRANS_PROMISE, LIMIT_TIME, ALLOW_END_PRIO, 
+    ALLOW_HOLL_PRIO, ALLOW_END_BID, IS_COMMISSION, COM_PERCENT, COMMISSION, INCREMENT_GROUP, 
+    INCREMENT_VALUE, PROJECT_ID, TRAD_INSTITUTION_ID, BUSINESS_STATUS, PROJECT_CLASSIFY_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.jmj.entity.GqCaaeProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from PRPROCESS.GQ_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from PRPROCESS.GQ_CAAE_PROJECT
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from PRPROCESS.GQ_CAAE_PROJECT
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.jmj.entity.GqCaaeProjectExample" >
+    delete from PRPROCESS.GQ_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.jmj.entity.GqCaaeProject" >
+    insert into PRPROCESS.GQ_CAAE_PROJECT (UUID, PRO_TRANS_ID, GET_CONTROLLING_INTEREST, 
+      PROJECT_TYPE, GO_TYPE, RELATED_PRO_CODE, 
+      IS_BIND, PRO_BROKER, MANAGEMENT_INTENT, 
+      GIVE_UP_PRIORITY, EMPLOYEE_SETTLE, BUYER_POSTULATE, 
+      IMPORTANT_INFO, OTHER_CONDITIONS, AUTHORIZE_UNIT, 
+      TRANS_PROMISE, LIMIT_TIME, ALLOW_END_PRIO, 
+      ALLOW_HOLL_PRIO, ALLOW_END_BID, IS_COMMISSION, 
+      COM_PERCENT, COMMISSION, INCREMENT_GROUP, 
+      INCREMENT_VALUE, PROJECT_ID, TRAD_INSTITUTION_ID, 
+      BUSINESS_STATUS, PROJECT_CLASSIFY_CODE)
+    values (#{uuid,jdbcType=VARCHAR}, #{proTransId,jdbcType=VARCHAR}, #{getControllingInterest,jdbcType=VARCHAR}, 
+      #{projectType,jdbcType=VARCHAR}, #{goType,jdbcType=VARCHAR}, #{relatedProCode,jdbcType=VARCHAR}, 
+      #{isBind,jdbcType=VARCHAR}, #{proBroker,jdbcType=VARCHAR}, #{managementIntent,jdbcType=VARCHAR}, 
+      #{giveUpPriority,jdbcType=VARCHAR}, #{employeeSettle,jdbcType=VARCHAR}, #{buyerPostulate,jdbcType=VARCHAR}, 
+      #{importantInfo,jdbcType=VARCHAR}, #{otherConditions,jdbcType=VARCHAR}, #{authorizeUnit,jdbcType=VARCHAR}, 
+      #{transPromise,jdbcType=VARCHAR}, #{limitTime,jdbcType=DECIMAL}, #{allowEndPrio,jdbcType=VARCHAR}, 
+      #{allowHollPrio,jdbcType=VARCHAR}, #{allowEndBid,jdbcType=VARCHAR}, #{isCommission,jdbcType=VARCHAR}, 
+      #{comPercent,jdbcType=DECIMAL}, #{commission,jdbcType=DECIMAL}, #{incrementGroup,jdbcType=VARCHAR}, 
+      #{incrementValue,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, #{tradInstitutionId,jdbcType=VARCHAR}, 
+      #{businessStatus,jdbcType=VARCHAR}, #{projectClassifyCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jmj.entity.GqCaaeProject" >
+    insert into PRPROCESS.GQ_CAAE_PROJECT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        UUID,
+      </if>
+      <if test="proTransId != null" >
+        PRO_TRANS_ID,
+      </if>
+      <if test="getControllingInterest != null" >
+        GET_CONTROLLING_INTEREST,
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE,
+      </if>
+      <if test="goType != null" >
+        GO_TYPE,
+      </if>
+      <if test="relatedProCode != null" >
+        RELATED_PRO_CODE,
+      </if>
+      <if test="isBind != null" >
+        IS_BIND,
+      </if>
+      <if test="proBroker != null" >
+        PRO_BROKER,
+      </if>
+      <if test="managementIntent != null" >
+        MANAGEMENT_INTENT,
+      </if>
+      <if test="giveUpPriority != null" >
+        GIVE_UP_PRIORITY,
+      </if>
+      <if test="employeeSettle != null" >
+        EMPLOYEE_SETTLE,
+      </if>
+      <if test="buyerPostulate != null" >
+        BUYER_POSTULATE,
+      </if>
+      <if test="importantInfo != null" >
+        IMPORTANT_INFO,
+      </if>
+      <if test="otherConditions != null" >
+        OTHER_CONDITIONS,
+      </if>
+      <if test="authorizeUnit != null" >
+        AUTHORIZE_UNIT,
+      </if>
+      <if test="transPromise != null" >
+        TRANS_PROMISE,
+      </if>
+      <if test="limitTime != null" >
+        LIMIT_TIME,
+      </if>
+      <if test="allowEndPrio != null" >
+        ALLOW_END_PRIO,
+      </if>
+      <if test="allowHollPrio != null" >
+        ALLOW_HOLL_PRIO,
+      </if>
+      <if test="allowEndBid != null" >
+        ALLOW_END_BID,
+      </if>
+      <if test="isCommission != null" >
+        IS_COMMISSION,
+      </if>
+      <if test="comPercent != null" >
+        COM_PERCENT,
+      </if>
+      <if test="commission != null" >
+        COMMISSION,
+      </if>
+      <if test="incrementGroup != null" >
+        INCREMENT_GROUP,
+      </if>
+      <if test="incrementValue != null" >
+        INCREMENT_VALUE,
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID,
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID,
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS,
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="proTransId != null" >
+        #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="getControllingInterest != null" >
+        #{getControllingInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="goType != null" >
+        #{goType,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedProCode != null" >
+        #{relatedProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isBind != null" >
+        #{isBind,jdbcType=VARCHAR},
+      </if>
+      <if test="proBroker != null" >
+        #{proBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="managementIntent != null" >
+        #{managementIntent,jdbcType=VARCHAR},
+      </if>
+      <if test="giveUpPriority != null" >
+        #{giveUpPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeSettle != null" >
+        #{employeeSettle,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPostulate != null" >
+        #{buyerPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="importantInfo != null" >
+        #{importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherConditions != null" >
+        #{otherConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeUnit != null" >
+        #{authorizeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="transPromise != null" >
+        #{transPromise,jdbcType=VARCHAR},
+      </if>
+      <if test="limitTime != null" >
+        #{limitTime,jdbcType=DECIMAL},
+      </if>
+      <if test="allowEndPrio != null" >
+        #{allowEndPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowHollPrio != null" >
+        #{allowHollPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowEndBid != null" >
+        #{allowEndBid,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommission != null" >
+        #{isCommission,jdbcType=VARCHAR},
+      </if>
+      <if test="comPercent != null" >
+        #{comPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="incrementGroup != null" >
+        #{incrementGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="incrementValue != null" >
+        #{incrementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.jmj.entity.GqCaaeProjectExample" resultType="java.lang.Integer" >
+    select count(*) from PRPROCESS.GQ_CAAE_PROJECT
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update PRPROCESS.GQ_CAAE_PROJECT
+    <set >
+      <if test="record.uuid != null" >
+        UUID = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proTransId != null" >
+        PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.getControllingInterest != null" >
+        GET_CONTROLLING_INTEREST = #{record.getControllingInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectType != null" >
+        PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goType != null" >
+        GO_TYPE = #{record.goType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relatedProCode != null" >
+        RELATED_PRO_CODE = #{record.relatedProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBind != null" >
+        IS_BIND = #{record.isBind,jdbcType=VARCHAR},
+      </if>
+      <if test="record.proBroker != null" >
+        PRO_BROKER = #{record.proBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managementIntent != null" >
+        MANAGEMENT_INTENT = #{record.managementIntent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giveUpPriority != null" >
+        GIVE_UP_PRIORITY = #{record.giveUpPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeSettle != null" >
+        EMPLOYEE_SETTLE = #{record.employeeSettle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerPostulate != null" >
+        BUYER_POSTULATE = #{record.buyerPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importantInfo != null" >
+        IMPORTANT_INFO = #{record.importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherConditions != null" >
+        OTHER_CONDITIONS = #{record.otherConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorizeUnit != null" >
+        AUTHORIZE_UNIT = #{record.authorizeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transPromise != null" >
+        TRANS_PROMISE = #{record.transPromise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitTime != null" >
+        LIMIT_TIME = #{record.limitTime,jdbcType=DECIMAL},
+      </if>
+      <if test="record.allowEndPrio != null" >
+        ALLOW_END_PRIO = #{record.allowEndPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allowHollPrio != null" >
+        ALLOW_HOLL_PRIO = #{record.allowHollPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.allowEndBid != null" >
+        ALLOW_END_BID = #{record.allowEndBid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isCommission != null" >
+        IS_COMMISSION = #{record.isCommission,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comPercent != null" >
+        COM_PERCENT = #{record.comPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="record.commission != null" >
+        COMMISSION = #{record.commission,jdbcType=DECIMAL},
+      </if>
+      <if test="record.incrementGroup != null" >
+        INCREMENT_GROUP = #{record.incrementGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.incrementValue != null" >
+        INCREMENT_VALUE = #{record.incrementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectId != null" >
+        PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.businessStatus != null" >
+        BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update PRPROCESS.GQ_CAAE_PROJECT
+    set UUID = #{record.uuid,jdbcType=VARCHAR},
+      PRO_TRANS_ID = #{record.proTransId,jdbcType=VARCHAR},
+      GET_CONTROLLING_INTEREST = #{record.getControllingInterest,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{record.projectType,jdbcType=VARCHAR},
+      GO_TYPE = #{record.goType,jdbcType=VARCHAR},
+      RELATED_PRO_CODE = #{record.relatedProCode,jdbcType=VARCHAR},
+      IS_BIND = #{record.isBind,jdbcType=VARCHAR},
+      PRO_BROKER = #{record.proBroker,jdbcType=VARCHAR},
+      MANAGEMENT_INTENT = #{record.managementIntent,jdbcType=VARCHAR},
+      GIVE_UP_PRIORITY = #{record.giveUpPriority,jdbcType=VARCHAR},
+      EMPLOYEE_SETTLE = #{record.employeeSettle,jdbcType=VARCHAR},
+      BUYER_POSTULATE = #{record.buyerPostulate,jdbcType=VARCHAR},
+      IMPORTANT_INFO = #{record.importantInfo,jdbcType=VARCHAR},
+      OTHER_CONDITIONS = #{record.otherConditions,jdbcType=VARCHAR},
+      AUTHORIZE_UNIT = #{record.authorizeUnit,jdbcType=VARCHAR},
+      TRANS_PROMISE = #{record.transPromise,jdbcType=VARCHAR},
+      LIMIT_TIME = #{record.limitTime,jdbcType=DECIMAL},
+      ALLOW_END_PRIO = #{record.allowEndPrio,jdbcType=VARCHAR},
+      ALLOW_HOLL_PRIO = #{record.allowHollPrio,jdbcType=VARCHAR},
+      ALLOW_END_BID = #{record.allowEndBid,jdbcType=VARCHAR},
+      IS_COMMISSION = #{record.isCommission,jdbcType=VARCHAR},
+      COM_PERCENT = #{record.comPercent,jdbcType=DECIMAL},
+      COMMISSION = #{record.commission,jdbcType=DECIMAL},
+      INCREMENT_GROUP = #{record.incrementGroup,jdbcType=VARCHAR},
+      INCREMENT_VALUE = #{record.incrementValue,jdbcType=VARCHAR},
+      PROJECT_ID = #{record.projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{record.tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{record.businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{record.projectClassifyCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jmj.entity.GqCaaeProject" >
+    update PRPROCESS.GQ_CAAE_PROJECT
+    <set >
+      <if test="proTransId != null" >
+        PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      </if>
+      <if test="getControllingInterest != null" >
+        GET_CONTROLLING_INTEREST = #{getControllingInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="projectType != null" >
+        PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      </if>
+      <if test="goType != null" >
+        GO_TYPE = #{goType,jdbcType=VARCHAR},
+      </if>
+      <if test="relatedProCode != null" >
+        RELATED_PRO_CODE = #{relatedProCode,jdbcType=VARCHAR},
+      </if>
+      <if test="isBind != null" >
+        IS_BIND = #{isBind,jdbcType=VARCHAR},
+      </if>
+      <if test="proBroker != null" >
+        PRO_BROKER = #{proBroker,jdbcType=VARCHAR},
+      </if>
+      <if test="managementIntent != null" >
+        MANAGEMENT_INTENT = #{managementIntent,jdbcType=VARCHAR},
+      </if>
+      <if test="giveUpPriority != null" >
+        GIVE_UP_PRIORITY = #{giveUpPriority,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeSettle != null" >
+        EMPLOYEE_SETTLE = #{employeeSettle,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerPostulate != null" >
+        BUYER_POSTULATE = #{buyerPostulate,jdbcType=VARCHAR},
+      </if>
+      <if test="importantInfo != null" >
+        IMPORTANT_INFO = #{importantInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherConditions != null" >
+        OTHER_CONDITIONS = #{otherConditions,jdbcType=VARCHAR},
+      </if>
+      <if test="authorizeUnit != null" >
+        AUTHORIZE_UNIT = #{authorizeUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="transPromise != null" >
+        TRANS_PROMISE = #{transPromise,jdbcType=VARCHAR},
+      </if>
+      <if test="limitTime != null" >
+        LIMIT_TIME = #{limitTime,jdbcType=DECIMAL},
+      </if>
+      <if test="allowEndPrio != null" >
+        ALLOW_END_PRIO = #{allowEndPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowHollPrio != null" >
+        ALLOW_HOLL_PRIO = #{allowHollPrio,jdbcType=VARCHAR},
+      </if>
+      <if test="allowEndBid != null" >
+        ALLOW_END_BID = #{allowEndBid,jdbcType=VARCHAR},
+      </if>
+      <if test="isCommission != null" >
+        IS_COMMISSION = #{isCommission,jdbcType=VARCHAR},
+      </if>
+      <if test="comPercent != null" >
+        COM_PERCENT = #{comPercent,jdbcType=DECIMAL},
+      </if>
+      <if test="commission != null" >
+        COMMISSION = #{commission,jdbcType=DECIMAL},
+      </if>
+      <if test="incrementGroup != null" >
+        INCREMENT_GROUP = #{incrementGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="incrementValue != null" >
+        INCREMENT_VALUE = #{incrementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradInstitutionId != null" >
+        TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      </if>
+      <if test="businessStatus != null" >
+        BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="projectClassifyCode != null" >
+        PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jmj.entity.GqCaaeProject" >
+    update PRPROCESS.GQ_CAAE_PROJECT
+    set PRO_TRANS_ID = #{proTransId,jdbcType=VARCHAR},
+      GET_CONTROLLING_INTEREST = #{getControllingInterest,jdbcType=VARCHAR},
+      PROJECT_TYPE = #{projectType,jdbcType=VARCHAR},
+      GO_TYPE = #{goType,jdbcType=VARCHAR},
+      RELATED_PRO_CODE = #{relatedProCode,jdbcType=VARCHAR},
+      IS_BIND = #{isBind,jdbcType=VARCHAR},
+      PRO_BROKER = #{proBroker,jdbcType=VARCHAR},
+      MANAGEMENT_INTENT = #{managementIntent,jdbcType=VARCHAR},
+      GIVE_UP_PRIORITY = #{giveUpPriority,jdbcType=VARCHAR},
+      EMPLOYEE_SETTLE = #{employeeSettle,jdbcType=VARCHAR},
+      BUYER_POSTULATE = #{buyerPostulate,jdbcType=VARCHAR},
+      IMPORTANT_INFO = #{importantInfo,jdbcType=VARCHAR},
+      OTHER_CONDITIONS = #{otherConditions,jdbcType=VARCHAR},
+      AUTHORIZE_UNIT = #{authorizeUnit,jdbcType=VARCHAR},
+      TRANS_PROMISE = #{transPromise,jdbcType=VARCHAR},
+      LIMIT_TIME = #{limitTime,jdbcType=DECIMAL},
+      ALLOW_END_PRIO = #{allowEndPrio,jdbcType=VARCHAR},
+      ALLOW_HOLL_PRIO = #{allowHollPrio,jdbcType=VARCHAR},
+      ALLOW_END_BID = #{allowEndBid,jdbcType=VARCHAR},
+      IS_COMMISSION = #{isCommission,jdbcType=VARCHAR},
+      COM_PERCENT = #{comPercent,jdbcType=DECIMAL},
+      COMMISSION = #{commission,jdbcType=DECIMAL},
+      INCREMENT_GROUP = #{incrementGroup,jdbcType=VARCHAR},
+      INCREMENT_VALUE = #{incrementValue,jdbcType=VARCHAR},
+      PROJECT_ID = #{projectId,jdbcType=VARCHAR},
+      TRAD_INSTITUTION_ID = #{tradInstitutionId,jdbcType=VARCHAR},
+      BUSINESS_STATUS = #{businessStatus,jdbcType=VARCHAR},
+      PROJECT_CLASSIFY_CODE = #{projectClassifyCode,jdbcType=VARCHAR}
+    where UUID = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>
